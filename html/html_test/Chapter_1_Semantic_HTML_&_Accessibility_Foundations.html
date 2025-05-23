@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Semantic HTML &amp; Accessibility Foundations</title>
+  <style>
+    body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
+    pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+    code { font-family: monospace; }
+    section { margin-bottom: 40px; }
+    h1, h2 { margin-bottom: 0.5em; }
+    h2 { border-bottom: 1px solid #ddd; padding-bottom: 0.2em; }
+  </style>
+</head>
+<body>
+  <h1>Chapter 1: Semantic HTML &amp; Accessibility Foundations</h1>
+
+  <!-- SECTION 1 -->
+  <section>
+    <h2>1. Deep Dive: Core Semantic Elements</h2>
+    <p>
+      Semantic elements convey meaning to browsers, assistive tech, and developers alike.
+      Below is a canonical page structure using <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+      <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code>.
+    </p>
+    <pre><code><!-- Example 1: Basic Semantic Layout -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Semantic Layout Example</title>
+  </head>
+  <body>
+    <!-- Landmark: Banner -->
+    <header role="banner">
+      <h1>My Awesome Site</h1>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Landmark: Main content -->
+    <main role="main">
+      <!-- Self-contained, distributable content -->
+      <article>
+        <h2>Understanding Semantic HTML</h2>
+        <p>Semantic HTML improves accessibility, SEO, and developer experience.</p>
+      </article>
+
+      <!-- Complementary content, e.g. sidebar -->
+      <aside role="complementary" aria-labelledby="related-heading">
+        <h3 id="related-heading">Related Posts</h3>
+        <ul>
+          <li><a href="/post1">Post One</a></li>
+          <li><a href="/post2">Post Two</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- Landmark: Footer -->
+    <footer role="contentinfo">
+      <p>© 2023 My Company</p>
+    </footer>
+  </body>
+</html>
+</code></pre>
+    <p>
+      <strong>Notes:</strong> Native elements already expose landmarks—use explicit <code>role</code>
+      attributes only when necessary. Avoid duplicating semantics (e.g. don’t wrap a <code>&lt;button&gt;</code>
+      in a <code>role="button"</code>).
+    </p>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section>
+    <h2>2. Document Outline &amp; Landmark Roles</h2>
+    <p>
+      The HTML5 outline algorithm treats each sectioning element as a new scope. Landmarks help AT
+      users skip to major areas of a page.
+    </p>
+    <pre><code><!-- Example 2: Document Outline with Nested Sections -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document Outline Demo</title>
+  </head>
+  <body>
+    <header role="banner"><h1>Site Title</h1></header>
+
+    <main role="main">
+      <section>
+        <h1>Chapter 1</h1>
+        <section>
+          <h2>Section 1.1</h2>
+          <p>Details of subsection 1.1 …</p>
+        </section>
+        <section>
+          <h2>Section 1.2</h2>
+          <p>Details of subsection 1.2 …</p>
+        </section>
+      </section>
+
+      <section>
+        <h1>Chapter 2</h1>
+        <p>Overview of chapter 2 …</p>
+      </section>
+    </main>
+
+    <footer role="contentinfo"><p>Footer info</p></footer>
+  </body>
+</html>
+</code></pre>
+    <p>
+      <strong>Outline Result:</strong><br>
+      • Site Title (h1)<br>
+      &nbsp;&nbsp;○ Chapter 1 (h1)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;– Section 1.1 (h2)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;– Section 1.2 (h2)<br>
+      &nbsp;&nbsp;○ Chapter 2 (h1)
+    </p>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section>
+    <h2>3. <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;figure&gt;</code></h2>
+    <p>
+      Use <code>&lt;article&gt;</code> for independent content, <code>&lt;section&gt;</code> to group
+      related content, and <code>&lt;figure&gt;</code>/<code>&lt;figcaption&gt;</code> for media.
+    </p>
+    <pre><code><!-- Example 3: Article with Figure -->
+<article>
+  <h2>Beautiful Landscape Photography</h2>
+  <p>Exploring the art of capturing nature’s beauty.</p>
+  <figure>
+    <img src="landscape.jpg" alt="Sunset over a mountain range">
+    <figcaption>Sunset over the Rockies.</figcaption>
+  </figure>
+</article>
+</code></pre>
+    <p>
+      <strong>Exception:</strong> Don’t nest <code>&lt;figure&gt;</code> within unrelated elements—
+      it should encapsulate media and its caption only.
+    </p>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section>
+    <h2>4. ARIA Roles, States &amp; Properties</h2>
+    <p>
+      ARIA augments native semantics when needed. Always prefer native HTML first.
+    </p>
+    <pre><code><!-- Example 4: Accessible Dropdown (ARIA) -->
+<div class="dropdown">
+  <button id="menuBtn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="menuList">
+    Toggle Menu
+  </button>
+  <ul id="menuList"
+      role="menu"
+      aria-labelledby="menuBtn"
+      hidden>
+    <li role="menuitem"><a href="/profile">Profile</a></li>
+    <li role="menuitem"><a href="/settings">Settings</a></li>
+    <li role="menuitem"><a href="/logout">Logout</a></li>
+  </ul>
+</div>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menuList');
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    menu.hidden = expanded;
+  });
+</script>
+</code></pre>
+    <p>
+      <strong>Key ARIA:</strong> <code>aria-haspopup</code>, <code>aria-expanded</code>,
+      <code>aria-controls</code>, <code>role="menu"</code>, <code>role="menuitem"</code>.<br>
+      <strong>Exception:</strong> Avoid adding <code>role="button"</code> to <code>&lt;button&gt;</code>.
+    </p>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section>
+    <h2>5. Accessibility Best Practices</h2>
+    <p>
+      Ensure keyboard navigation, visible focus, skip links, and screen-reader friendliness.
+    </p>
+    <pre><code><!-- Example 5: Skip Link & Keyboard Focus -->
+<a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: -40px; left: 0;
+    background: #000; color: #fff; padding: 8px;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+  :focus { outline: 2px solid #005fcc; }
+</style>
+
+<header><h1>Page Header</h1></header>
+
+<main id="mainContent" tabindex="-1" role="main">
+  <h2>Welcome</h2>
+  <p>Press Tab to see the skip link and focus outlines.</p>
+</main>
+</code></pre>
+    <ul>
+      <li><strong>Skip Link:</strong> Allows keyboard users to bypass repetitive nav.</li>
+      <li><strong>Focus Styles:</strong> Always visible—never hide outlines.</li>
+      <li><strong>Tabindex="-1":</strong> Enables programmatic focus on landmarks.</li>
+    </ul>
+  </section>
+
+</body>
+</html>

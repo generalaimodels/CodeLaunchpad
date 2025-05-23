@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 2: Enhanced Forms &amp; Validation</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 20px; }
+    h1, h2 { margin-bottom: 0.5em; }
+    section { margin-bottom: 2em; }
+    pre { background: #f0f0f0; padding: 10px; overflow-x: auto; }
+    code { font-family: monospace; }
+    ul { margin-top: 0.5em; }
+    .note { background: #e8f4ff; border-left: 4px solid #005fcc; padding: 8px; margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+  <h1>Chapter 2: Enhanced Forms &amp; Validation</h1>
+
+  <!-- SECTION 1 -->
+  <section>
+    <h2>1. Innovative Input Types</h2>
+    <p>HTML5 introduced specialized input types to improve UX and mobile support. Browsers render native pickers for:</p>
+    <pre><code><!-- Example 1: Various Input Types -->
+<form>
+  <label>Date: <input type="date" name="meeting" required></label><br>
+  <label>Time: <input type="datetime-local" name="appointment"></label><br>
+  <label>Color: <input type="color" name="favcolor" value="#ff0000"></label><br>
+  <label>Range: <input type="range" name="volume" min="0" max="100" value="50"></label><br>
+  <label>Email: <input type="email" name="email" placeholder="you@example.com" required></label><br>
+  <label>Phone: <input type="tel" name="phone" pattern="^\+?[0-9\s\-]{7,15}$"></label><br>
+  <button type="submit">Submit</button>
+</form>
+</code></pre>
+    <div class="note">
+      <strong>Exception:</strong> Not all browsers support <code>datetime-local</code> pickers uniformly. Provide polyfills or fallback patterns if consistency is critical.
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section>
+    <h2>2. Constraint Validation API</h2>
+    <p>Leverage built-in HTML validation and <code>setCustomValidity()</code> for custom error messages.</p>
+    <pre><code><!-- Example 2: Built-in & Custom Validation -->
+<form id="signup">
+  <label>User: <input id="user" type="text" minlength="3" required></label><br>
+  <label>Password: <input id="pwd" type="password" minlength="8" required></label><br>
+  <button type="submit">Register</button>
+</form>
+
+<script>
+  const form = document.getElementById('signup');
+  const user = document.getElementById('user');
+  const pwd  = document.getElementById('pwd');
+
+  user.addEventListener('input', () => {
+    if (user.validity.tooShort) {
+      user.setCustomValidity('Username must be at least 3 characters.');
+    } else {
+      user.setCustomValidity('');
+    }
+  });
+
+  form.addEventListener('submit', e => {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      alert('Please correct the errors and try again.');
+    }
+  });
+</script>
+</code></pre>
+    <ul>
+      <li><strong>Built-in:</strong> <code>required</code>, <code>minlength</code>, <code>pattern</code>, etc.</li>
+      <li><strong>API:</strong> <code>checkValidity()</code>, <code>setCustomValidity()</code>, <code>validity</code> object.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section>
+    <h2>3. Pattern, Inputmode &amp; Autocomplete</h2>
+    <p>Improve mobile input and suggest values:</p>
+    <pre><code><!-- Example 3: Pattern, Inputmode, Autocomplete -->
+<form>
+  <label>ZIP Code:
+    <input type="text"
+           name="zip"
+           pattern="\d{5}(-\d{4})?"
+           inputmode="numeric"
+           autocomplete="postal-code"
+           required>
+  </label><br>
+  <label>Credit Card:
+    <input type="text"
+           name="cc"
+           pattern="[0-9\s]{13,19}"
+           inputmode="numeric"
+           autocomplete="cc-number">
+  </label><br>
+  <button type="submit">Pay</button>
+</form>
+</code></pre>
+    <div class="note">
+      <strong>Note:</strong> <code>inputmode</code> hints at virtual-keyboard type; it does not enforce validation. Always pair with <code>pattern</code>.
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section>
+    <h2>4. Controls: &lt;datalist&gt;, &lt;progress&gt;, &lt;meter&gt;</h2>
+    <p>Use these elements for suggestions and data visualization:</p>
+    <pre><code><!-- Example 4: Datalist, Progress, Meter -->
+<form>
+  <label>Browser:
+    <input list="browsers" name="browser" autocomplete="off">
+    <datalist id="browsers">
+      <option value="Chrome">
+      <option value="Firefox">
+      <option value="Safari">
+      <option value="Edge">
+    </datalist>
+  </label><br>
+
+  <label>Upload:
+    <progress max="100" value="40">40%</progress>
+  </label><br>
+
+  <label>CPU Load:
+    <meter min="0" max="100" low="25" high="75" optimum="50" value="60">
+      60%
+    </meter>
+  </label>
+</form>
+</code></pre>
+    <ul>
+      <li><strong>&lt;datalist&gt;:</strong> suggestions but not restrictive.</li>
+      <li><strong>&lt;progress&gt;:</strong> read-only; use <code>value</code> & <code>max</code>.</li>
+      <li><strong>&lt;meter&gt;:</strong> represents a scalar measurement within a known range.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section>
+    <h2>5. Custom Form Elements with ARIA</h2>
+    <p>When native controls fall short, build ARIA-compatible widgets:</p>
+    <pre><code><!-- Example 5: ARIA Slider -->
+<div role="slider"
+     aria-label="Volume"
+     aria-valuemin="0"
+     aria-valuemax="100"
+     aria-valuenow="30"
+     tabindex="0"
+     id="volSlider"
+     style="width:200px; height:8px; background:#ddd; position:relative;">
+  <div id="thumb" style="width:12px; height:12px; background:#005fcc;
+                        position:absolute; top:-2px; left:30%; border-radius:50%;"></div>
+</div>
+
+<script>
+  const slider = document.getElementById('volSlider');
+  const thumb  = document.getElementById('thumb');
+
+  slider.addEventListener('keydown', e => {
+    let val = parseInt(slider.getAttribute('aria-valuenow'), 10);
+    if (e.key === 'ArrowRight') val = Math.min(val + 5, 100);
+    if (e.key === 'ArrowLeft')  val = Math.max(val - 5,   0);
+    slider.setAttribute('aria-valuenow', val);
+    thumb.style.left = val + '%';
+  });
+</script>
+</code></pre>
+    <div class="note">
+      <strong>Exception:</strong> Always prefer native <code>&lt;input type="range"&gt;</code> before rolling a custom slider. Custom widgets require thorough ARIA, keyboard, and screen-reader support.
+    </div>
+  </section>
+</body>
+</html>

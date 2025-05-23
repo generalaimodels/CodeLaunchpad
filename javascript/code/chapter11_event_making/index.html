@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Events - Interactive Web Pages 🚀</title>
+</head>
+<body>
+    <!--
+        🎭 Chapter 11: Events - Making Pages Interactive 🎭
+
+        Events are signals or notifications that something has happened. 🚦
+        In web browsers, these are usually user interactions, but can also be browser actions. 🌐
+
+        Event Flow (Conceptual):
+
+        User Interaction (e.g., Mouse Click, Key Press) 🖱️⌨️
+            |
+            V
+        Browser Detects Event 👁️
+            |
+            V
+        Event Object is Created 📦 (Contains details about the event)
+            |
+            V
+        Event Listeners are Checked for the Event Type on the Target Element 👂
+            |
+            V
+        If Listener Found, Event Handler Function is Executed 🚀 (Your JavaScript code runs!)
+
+        This chapter will explore how to capture and respond to these events, making your web pages dynamic! ✨
+    -->
+
+    <h1>Interactive Elements 👇</h1>
+
+    <button id="clickButton">Click Me! 🖱️</button>
+    <div id="hoverDiv" style="width: 100px; height: 100px; background-color: lightblue; margin-top: 10px;">Hover Here 🐭</div>
+    <input type="text" id="inputField" placeholder="Focus & Type Here ⌨️" style="margin-top: 10px;">
+    <form id="submitForm" style="margin-top: 10px;">
+        <input type="submit" value="Submit Form 🚀">
+    </form>
+    <select id="changeSelect" style="margin-top: 10px;">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+
+    <script>
+        // 📚 1. Common Browser Events 📚
+
+        // Table of Common Events (Conceptual):
+
+        // | Event       | Description                                                                              | Trigger                                                                | Example                    |
+        // | :---------- | :--------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- | :------------------------- |
+        // | `click`     | Occurs when an element is clicked                                                        | User clicks the element with the mouse                                 | Clicking a button         |
+        // | `mouseover` | Occurs when the mouse cursor moves onto an element                                      | User moves the mouse over the element                                  | Hovering over a div       |
+        // | `mouseout`  | Occurs when the mouse cursor moves out of an element                                    | User moves the mouse away from the element                             | Moving mouse out of a div |
+        // | `keydown`   | Occurs when a key is pressed down (fires repeatedly if key held)                         | User presses any key on the keyboard                                   | Pressing 'a' key          |
+        // | `keyup`     | Occurs when a key is released                                                            | User releases the key on the keyboard                                   | Releasing 'a' key         |
+        // | `focus`     | Occurs when an element gains focus                                                        | User selects element (click/tab - input fields)                       | Focusing input field      |
+        // | `blur`      | Occurs when an element loses focus                                                        | User clicks away/shifts focus (input fields)                           | Blurring input field       |
+        // | `submit`    | Occurs when a form is submitted                                                            | User submits a form (button click/Enter)                             | Submitting a form         |
+        // | `change`    | Occurs when value of input/select/textarea changes                                       | User modifies input field value                                        | Changing input value      |
+        // | `load`      | Occurs when the page has finished loading                                                 | Browser finishes loading page resources                                | Page load                 |
+
+        // 👂 2. Event Listeners: addEventListener() 👂
+
+        // Syntax: element.addEventListener(event, function, useCapture);
+        // - `element`:  HTML element to attach the listener to. 🎯
+        // - `event`:    String representing the event type (e.g., 'click', 'mouseover'). 🏷️
+        // - `function`: Event handler function to execute when the event occurs.  ⚙️
+        // - `useCapture`: Optional boolean (advanced - for event capturing phase, default false=bubbling). 🎣
+
+        // 🖱️ Example 1: 'click' event on a button 🖱️
+        const clickButton = document.getElementById('clickButton'); // Select the button element
+        clickButton.addEventListener('click', function() { // Attach 'click' event listener
+            console.log("Button Clicked! 🎉"); // Event handler function - logs to console
+        });
+
+        // Another 'click' example - dynamically changing button text
+        clickButton.addEventListener('click', function() {
+            if (clickButton.textContent === "Click Me! 🖱️") {
+                clickButton.textContent = "Clicked! ✅";
+            } else {
+                clickButton.textContent = "Click Me! 🖱️";
+            }
+        });
+
+        // 🐭 Example 2: 'mouseover' and 'mouseout' events on a div 🐭
+        const hoverDiv = document.getElementById('hoverDiv'); // Select the div
+        hoverDiv.addEventListener('mouseover', function() { // 'mouseover' listener
+            console.log("Mouse Over Div! 🚀"); // Log on mouseover
+            hoverDiv.style.backgroundColor = 'lightcoral'; // Change background color on hover
+        });
+
+        hoverDiv.addEventListener('mouseout', function() { // 'mouseout' listener
+            console.log("Mouse Out of Div! 💨"); // Log on mouseout
+            hoverDiv.style.backgroundColor = 'lightblue'; // Revert background color on mouseout
+        });
+
+        // ⌨️ Example 3: 'focus' and 'blur' events on an input field ⌨️
+        const inputField = document.getElementById('inputField'); // Select the input field
+        inputField.addEventListener('focus', function() { // 'focus' event - when input is selected
+            console.log("Input Field Focused! 👀"); // Log on focus
+            inputField.style.borderColor = 'green'; // Change border color on focus
+        });
+
+        inputField.addEventListener('blur', function() { // 'blur' event - when input loses focus
+            console.log("Input Field Blurred! 😴"); // Log on blur
+            inputField.style.borderColor = 'lightgray'; // Revert border color on blur
+        });
+
+        // ⌨️ Example 4: 'keydown' and 'keyup' events on an input field ⌨️
+        inputField.addEventListener('keydown', function(event) { // 'keydown' - key is pressed (fires repeatedly if held)
+            console.log("Key Down Event - Key Pressed: ", event.key, " | Code:", event.code); // Log key info
+            // `event` object is passed automatically to the handler
+            // `event.key` - string representing the key pressed (e.g., "a", "Enter", "Shift")
+            // `event.code` - string representing the physical key on the keyboard (e.g., "KeyA", "Enter", "ShiftLeft")
+        });
+
+        inputField.addEventListener('keyup', function(event) { // 'keyup' - key is released
+            console.log("Key Up Event - Key Released: ", event.key); // Log key release
+        });
+
+        // 🚀 Example 5: 'submit' event on a form 🚀
+        const submitForm = document.getElementById('submitForm'); // Select the form
+        submitForm.addEventListener('submit', function(event) { // 'submit' event - form submission
+            event.preventDefault(); // 🚫 Prevent default form submission behavior (page reload) - VERY IMPORTANT for JS form handling
+            console.log("Form Submitted! (preventDefault used) ✅"); // Log form submit
+            // You would typically handle form data here using JavaScript (e.g., AJAX to send data to server)
+        });
+
+        // Another 'submit' example - getting form data (simple case)
+        submitForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(submitForm); // Create FormData object from the form
+            const formValues = {};
+            for (const [key, value] of formData.entries()) { // Iterate through form data entries
+                formValues[key] = value; // Store key-value pairs in an object
+            }
+            console.log("Form Data:", formValues); // Log the form data object
+            alert("Form Data submitted (check console)"); // Alert user (for demo)
+        });
+
+        // 🔄 Example 6: 'change' event on a select dropdown 🔄
+        const changeSelect = document.getElementById('changeSelect'); // Select the select element
+        changeSelect.addEventListener('change', function(event) { // 'change' event - value of select changes
+            const selectedValue = changeSelect.value; // Get the currently selected value
+            console.log("Select Value Changed to: ", selectedValue); // Log the new value
+            alert("Selected Option: " + selectedValue); // Alert user (for demo)
+        });
+
+        // Another 'change' example - dynamic text update based on selection
+        changeSelect.addEventListener('change', function() {
+            const selectedOptionText = changeSelect.options[changeSelect.selectedIndex].text; // Get selected option's text
+            alert("You selected: " + selectedOptionText); // Alert with option text
+        });
+
+
+        // 📦 3. Event Handling and Event Object 📦
+
+        // When an event occurs:
+        // 1. Browser creates an Event Object. 📦
+        // 2. This object is passed as the first argument to your event handler function. ⚙️ -> function(event) { ... }
+        // 3. Event object contains properties and methods with details about the event. ℹ️
+
+        // Common Event Object Properties/Methods:
+        // - `event.target`:  Reference to the element that triggered the event. 🎯
+        // - `event.type`:    String representing the type of event (e.g., "click", "mouseover"). 🏷️
+        // - `event.key` (for keyboard events): The key that was pressed. ⌨️
+        // - `event.code` (for keyboard events): Physical key code. ⌨️
+        // - `event.preventDefault()`: Method to prevent default action of the event (e.g., form submit, link navigation). 🚫
+        // - `event.stopPropagation()`: Method to stop event bubbling/capturing (advanced topic). 🛑
+
+        // Example demonstrating `event.target` - generic click handler for multiple buttons (if you had them)
+        document.addEventListener('click', function(event) { // Attach click listener to the whole document (for demonstration)
+            if (event.target.tagName === 'BUTTON') { // Check if the clicked element is a button
+                console.log("Button Clicked (using document listener)! Button text:", event.target.textContent); // Log button text
+            }
+        });
+        // Note: This is just for demonstration of event.target. In most cases, attach listener directly to the button.
+
+        // 🎉 Chapter 11 Completed! You are now an Event Handling Expert! 🎉
+        console.log("Chapter 11: Events - Completed! 🚀 You can now make interactive web pages! ✨");
+    </script>
+</body>
+</html>

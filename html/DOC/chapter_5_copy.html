@@ -1,0 +1,255 @@
+<!--
+  File   : html-css-masterclass.html
+  Author : Ultra-IQ Mentor (“Best-Coder”)
+  Scope  : Single-file, zero-dependency guide to “HTML + CSS”.
+           – 10 numbered, self-contained demos (EX-01 … EX-10)
+           – Explains every integration technique, core layout systems,
+             and advanced features with edge-case notes.
+  Style  : HTML5, semantic, 2-space indent, modern coding standards.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HTML + CSS — 10 × Practical Demos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tutorial cosmetics (not the subject of study) -->
+  <style>
+    :root{
+      --ink:#222; --bg:#f7f9fc; --card:#fff; --note:#c62828;
+      --mono:Consolas,"Courier New",monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:2rem;font:16px/1.6 "Segoe UI",Arial,sans-serif;
+         background:var(--bg);color:var(--ink)}
+    section{background:var(--card);padding:1.8rem 2rem;margin-bottom:3rem;
+            border-radius:8px;box-shadow:0 2px 6px #0002}
+    h1{color:#007acc;margin-top:0}
+    code,pre{font-family:var(--mono);background:#eef3ff;padding:.2rem .4rem;border-radius:4px}
+    .note{color:var(--note);font-weight:700}
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-01 — INLINE CSS                                         ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • style="prop:value" on the element itself.
+     • Highest specificity except for !important declarations.
+     • Use sparingly; hurts maintainability.                         -->
+<section id="ex01">
+  <h1>EX-01  Inline CSS</h1>
+  <p style="color:#4caf50;font-weight:700">
+    Green, bold text via inline style.
+  </p>
+  <!-- Edge case: property typo is silently ignored -->
+  <p style="color:red" class="note">
+    "colr" typo = browser drops rule, falls back to default color.
+  </p>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-02 — INTERNAL STYLESHEET                                ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • <style> inside <head> (or <body> though non-ideal → FOUC).
+     • Good for prototyping and single-page docs.                    -->
+<section id="ex02">
+  <h1>EX-02  Internal CSS</h1>
+  <style>
+    /* Scoped to section to avoid collisions with other demos */
+    #ex02 .badge{
+      display:inline-block;
+      padding:.4rem 1rem;
+      background:#2196f3;
+      color:#fff;border-radius:9999px
+    }
+  </style>
+  <span class="badge">Internal Style Badge</span>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-03 — EXTERNAL STYLESHEET (simulated)                    ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • Production best practice: <link rel="stylesheet" href="main.css">
+     • Here, we inject via JS to keep single-file.                   -->
+<section id="ex03">
+  <h1>EX-03  External CSS (injected)</h1>
+  <script>
+    const css = `
+      #ex03 table{border-collapse:collapse;width:100%}
+      #ex03 th,#ex03 td{border:1px solid #bbb;padding:.6rem;text-align:center}
+      #ex03 thead{background:#009688;color:#fff}
+      #ex03 tbody tr:nth-child(even){background:#e0f2f1}
+    `;
+    const s = document.createElement('style'); s.textContent = css;
+    document.head.appendChild(s);
+  </script>
+  <table>
+    <thead><tr><th>Lang</th><th>Creator</th><th>Year</th></tr></thead>
+    <tbody>
+      <tr><td>Python</td> <td>Guido</td> <td>1991</td></tr>
+      <tr><td>Go</td>     <td>Rob Pike</td> <td>2009</td></tr>
+      <tr><td>Rust</td>   <td>Graydon</td> <td>2010</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-04 — SELECTORS SHOWCASE                                 ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • Demonstrates class, ID, attr, descendant, pseudo-class.       -->
+<section id="ex04">
+  <h1>EX-04  Selector Types</h1>
+  <style>
+    #ex04 #banner{background:#673ab7;color:#fff;padding:.6rem}
+    #ex04 .tag[data-hot="yes"]{background:#e91e63;color:#fff}
+    #ex04 li:hover{background:#ffeb3b}
+  </style>
+  <h2 id="banner">Banner styled via ID selector</h2>
+  <ul>
+    <li class="tag" data-hot="yes">Attr selector hot=yes</li>
+    <li class="tag">Normal tag</li>
+  </ul>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-05 — BOX MODEL & OVERFLOW                               ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • Visualize margin, padding, border, and overflow behaviours.   -->
+<section id="ex05">
+  <h1>EX-05  Box Model</h1>
+  <style>
+    #ex05 .box{
+      width:200px;
+      padding:16px;
+      border:6px solid #ff5722;
+      margin:12px;
+      background:#ffe0b2;
+      overflow:auto; /* scrollbars appear if content exceeds box */
+      max-height:90px
+    }
+  </style>
+  <div class="box">
+    Long text to trigger overflow. Long text to trigger overflow. Long text to trigger overflow.
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-06 — POSITIONING (static | relative | absolute | fixed) ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="ex06">
+  <h1>EX-06  Positioning</h1>
+  <style>
+    #ex06 .outer{position:relative;background:#c5e1a5;height:120px}
+    #ex06 .inner{position:absolute;bottom:10px;right:10px;
+                 background:#ff7043;color:#fff;padding:.3rem .6rem}
+    #ex06 .fixed{position:fixed;bottom:20px;left:20px;
+                 background:#2196f3;color:#fff;padding:.4rem .8rem}
+  </style>
+  <div class="outer">
+    Parent (relative)
+    <span class="inner">absolute child</span>
+  </div>
+  <p class="fixed">Fixed badge (scroll to keep view-port)</p>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-07 — FLEXBOX LAYOUT                                     ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • One-dimensional layout model (row/column).                   -->
+<section id="ex07">
+  <h1>EX-07  Flexbox</h1>
+  <style>
+    #ex07 .flex{
+      display:flex;gap:.6rem;
+      justify-content:space-between;
+      flex-wrap:wrap /* auto wrap boxes on small screens */
+    }
+    #ex07 .item{
+      flex:1 1 120px;
+      background:#03a9f4;color:#fff;padding:1rem;text-align:center
+    }
+  </style>
+  <div class="flex">
+    <div class="item">1</div><div class="item">2</div>
+    <div class="item">3</div><div class="item">4</div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-08 — GRID LAYOUT                                        ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • Two-dimensional layout: rows & columns.                      -->
+<section id="ex08">
+  <h1>EX-08  CSS Grid</h1>
+  <style>
+    #ex08 .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:8px
+    }
+    #ex08 .cell{padding:1rem;background:#8bc34a;color:#fff;text-align:center}
+    #ex08 .cell:nth-child(odd){background:#689f38}
+  </style>
+  <div class="grid">
+    <div class="cell">A</div><div class="cell">B</div><div class="cell">C</div>
+    <div class="cell">D</div><div class="cell">E</div><div class="cell">F</div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-09 — RESPONSIVE MEDIA QUERIES                           ║
+     ╚══════════════════════════════════════════════════════════════╝
+     • Adapt typography and layout to viewport width.               -->
+<section id="ex09">
+  <h1>EX-09  Media Queries</h1>
+  <style>
+    #ex09 p{font-size:1rem}
+    @media (min-width:600px){
+      #ex09 p{font-size:1.4rem;background:#d1c4e9}
+    }
+    @media (prefers-color-scheme:dark){
+      body{background:#121212;color:#e0e0e0}
+    }
+  </style>
+  <p>Resize the window; font grows ≥600 px wide.</p>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  EX-10 — VARIABLES · TRANSITIONS · KEYFRAMES                ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="ex10">
+  <h1>EX-10  CSS Variables + Animation</h1>
+  <style>
+    :root{--brand:#ff9800}
+    #ex10 .btn{
+      background:var(--brand);color:#fff;border:none;
+      padding:.8rem 1.4rem;border-radius:6px;cursor:pointer;
+      transition:transform .25s, background .3s
+    }
+    #ex10 .btn:hover{transform:translateY(-4px);background:#ffa726}
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(255,152,0,.7)}
+      50%    {box-shadow:0 0 0 14px rgba(255,152,0,0)}
+    }
+    #ex10 .pulse{animation:pulse 2s infinite}
+  </style>
+  <button class="btn pulse">Animated Button</button>
+  <!-- Exception: using var() before declaration yields computed as 'initial' -->
+  <p class="note">Change <code>--brand</code> in <code>:root</code> to instantly recolor.</p>
+</section>
+
+<!-- ——— END OF FILE ——— -->
+</body>
+</html>

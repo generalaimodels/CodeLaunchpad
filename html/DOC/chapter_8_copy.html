@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- =========================================================================================
+HTML PAGE TITLE & TABLES — ALL-IN-ONE SUPER DEMO (10 EXAMPLES)
+Author : “World’s Best Coder” (IQ>200 🧠⚡)
+File   : tables-masterclass.html   —   open in any modern browser.
+Goal   : Explain every crucial nuance of <title> + robust table patterns.
+Notes  : ‣ All exposition lives in comments.  ‣ Feel free to hack & remix.
+========================================================================================= -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- ─────────────────────────────  PAGE TITLE BEST-PRACTICE  ──────────────────────────
+         1) Concise (≤ 60 chars) + keyword-rich for SEO. 
+         2) BRAND last, content first.  (Google often truncates after ~580px width)
+         3) Changed at runtime (Example 0) to show dynamic updates (uncommon but useful).
+    -->
+    <title>Mastering HTML Tables – 10 Illustrated Patterns | CodeGenius Labs</title>
+
+    <!-- Bonus: dynamic title change after 5 s (simulate “(1) New Message!” style) -->
+    <script>
+        setTimeout(()=>document.title = "✔️ Completed – HTML Tables Mastery", 5000);
+    </script>
+
+    <!-- Minimal design tokens for clarity -->
+    <style>
+        *{box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+        body{margin:0;padding:2rem;line-height:1.6;background:#f7f9fc;color:#222;}
+        h1,h2{margin:0 0 .5em;color:#112;}
+        section{margin-bottom:3rem;}
+        table{border-collapse:collapse;width:100%;margin:1rem 0;}
+        th,td{border:1px solid #aaa;padding:.5rem;text-align:left;}
+        caption{caption-side:top;font-weight:600;padding:.4rem;}
+        /* Example 6 – zebra striping */
+        .zebra tbody tr:nth-child(odd){background:#f0f5ff;}
+        .zebra tbody tr:hover{background:#d6e4ff;}
+        /* Example 7 – responsive */
+        .tbl-wrap{overflow-x:auto;}
+        @media(max-width:540px){
+            .stack td[data-label]{display:block;padding-left:50%;position:relative;}
+            .stack td[data-label]::before{
+                content:attr(data-label);
+                position:absolute;left:0;width:45%;padding-left:.5rem;font-weight:600;color:#555;
+            }
+            .stack th{display:none;} /* headers hidden in stacked mode */
+        }
+        /* Example 9 – visual diff for layout algorithm */
+        .fixed-demo{table-layout:fixed;}
+        .fixed-demo td:nth-child(2){width:50%;}
+        .content-editable td{background:#fffbe6;}
+        .add-btn{padding:.3rem .8rem;font-size:1rem;cursor:pointer;margin-bottom:.5rem;}
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>HTML Tables &amp; <code>&lt;title&gt;</code> — 10 Deep-Dive Examples</h1>
+    <p>Scroll through each case; inspect code comments for rationale & edge-cases.</p>
+</header>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 1 – BASIC TABLE + CAPTION                                                    ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex1">
+    <h2>1️⃣ Basic Table with <code>&lt;caption&gt;</code></h2>
+    <table>
+        <caption>Monthly Sales (USD)</caption>
+        <tr><th>Month</th><th>Revenue</th></tr>
+        <tr><td>January</td><td>$12 000</td></tr>
+        <tr><td>February</td><td>$15 400</td></tr>
+        <tr><td>March</td><td>$13 700</td></tr>
+    </table>
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 2 – THEAD / TBODY / TFOOT                                                    ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex2">
+    <h2>2️⃣ Structural Groups (<code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>)</h2>
+    <table>
+        <thead>
+            <tr><th>Item</th><th>Qty</th><th>Unit Price</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Pencil</td><td>100</td><td>$0.50</td></tr>
+            <tr><td>Notebook</td><td>75</td><td>$1.20</td></tr>
+            <tr><td>Eraser</td><td>150</td><td>$0.20</td></tr>
+        </tbody>
+        <tfoot>
+            <tr><th>Total</th><td>325</td><td>$97.00</td></tr>
+        </tfoot>
+    </table>
+    <!--  Note: screen-readers can jump between groups; tfoot prints atop every page in print. -->
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 3 – COLSPAN (MERGE COLUMNS)                                                  ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex3">
+    <h2>3️⃣ Column Span (<code>colspan</code>)</h2>
+    <table>
+        <tr><th colspan="3">Quarterly Profit 2024</th></tr>
+        <tr><th>Q1</th><th>Q2</th><th>Q3</th></tr>
+        <tr><td>$24 000</td><td>$27 500</td><td>$31 100</td></tr>
+    </table>
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 4 – ROWSPAN (MERGE ROWS)                                                     ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex4">
+    <h2>4️⃣ Row Span (<code>rowspan</code>)</h2>
+    <table>
+        <tr><th rowspan="3">E-Learning</th><td>HTML</td><td>Completed</td></tr>
+        <tr>                      <td>CSS</td><td>In-Progress</td></tr>
+        <tr>                      <td>JavaScript</td><td>Pending</td></tr>
+    </table>
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 5 – COLGROUP & COL WIDTH STYLE                                              ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex5">
+    <h2>5️⃣ <code>&lt;colgroup&gt;</code> for Column Styling</h2>
+    <table>
+        <colgroup>
+            <col style="background:#ffeef0">
+            <col span="2" style="background:#e6ffed">
+        </colgroup>
+        <tr><th>Language</th><th>Stars</th><th>Forks</th></tr>
+        <tr><td>Python</td><td>55k</td><td>23k</td></tr>
+        <tr><td>Go</td><td>35k</td><td>15k</td></tr>
+    </table>
+    <!-- Handy for color-coding or fixed widths across many rows. -->
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 6 – ZEBRA STRIPES & HOVER                                                   ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex6">
+    <h2>6️⃣ Zebra Striping &amp; Row Hover</h2>
+    <table class="zebra">
+        <thead><tr><th>User</th><th>Email</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr><td>Ada Lovelace</td><td>ada@math.net</td><td>Active</td></tr>
+            <tr><td>Alan Turing</td><td>alan@code.uk</td><td>Pending</td></tr>
+            <tr><td>Grace Hopper</td><td>grace@navy.mil</td><td>Banned</td></tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 7 – RESPONSIVE TABLE (SCROLL + MOBILE STACK)                                ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex7">
+    <h2>7️⃣ Responsive Techniques</h2>
+    <div class="tbl-wrap">
+      <table class="stack">
+        <thead>
+            <tr><th>Name</th><th>Position</th><th>Office</th><th>Hire Date</th></tr>
+        </thead>
+        <tbody>
+            <tr><td data-label="Name">Satya Nadella</td><td data-label="Position">CEO</td><td data-label="Office">Redmond</td><td data-label="Hire">2014</td></tr>
+            <tr><td data-label="Name">Tim Cook</td><td data-label="Position">CEO</td><td data-label="Office">Cupertino</td><td data-label="Hire">2011</td></tr>
+            <tr><td data-label="Name">Sundar Pichai</td><td data-label="Position">CEO</td><td data-label="Office">Mountain View</td><td data-label="Hire">2015</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!--  Desktop: horizontal scroll if overflow.  Mobile ≤540px: stacked cells via ::before. -->
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 8 – ACCESSIBILITY: SCOPE & HEADER IDS                                       ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex8">
+    <h2>8️⃣ Accessibility (<code>scope</code>, <code>id</code>/<code>headers</code>)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th id="h-product" scope="col">Product</th>
+                <th id="h-price" scope="col">Price</th>
+                <th id="h-stock" scope="col">In Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td headers="h-product">Raspberry Pi 4</td>
+                <td headers="h-price">$75</td>
+                <td headers="h-stock">✔</td>
+            </tr>
+            <tr>
+                <td headers="h-product">Arduino Uno</td>
+                <td headers="h-price">$23</td>
+                <td headers="h-stock">✖</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--  Screen-readers announce header when entering each cell, improving context. -->
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 9 – TABLE-LAYOUT: AUTO vs FIXED                                             ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex9">
+    <h2>9️⃣ Layout Algorithms (<code>auto</code> vs <code>fixed</code>)</h2>
+    <table>
+        <caption>Default: auto (content dictates width)</caption>
+        <tr><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td><td>Narrow</td></tr>
+    </table>
+
+    <table class="fixed-demo">
+        <caption>Fixed Layout (predictable columns)</caption>
+        <tr><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td><td>Narrow</td></tr>
+    </table>
+    <!--  fixed: browsers ignore cell content for initial layout, boosts performance on huge tables. -->
+</section>
+
+
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════════════════╗
+     ║ EXAMPLE 10 – EDITABLE TABLE + JS ROW INSERT                                         ║
+     ╚══════════════════════════════════════════════════════════════════════════════════════╝ -->
+<section id="ex10">
+    <h2>🔟 Interactive / Editable Table</h2>
+    <button class="add-btn" onclick="addRow()">➕ Add Row</button>
+    <table id="editTable" class="content-editable">
+        <thead><tr><th>Task</th><th>Owner</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr contenteditable="true"><td>Design UI</td><td>Alice</td><td>Todo</td></tr>
+            <tr contenteditable="true"><td>Implement API</td><td>Bob</td><td>In Progress</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        /* Adds a blank, content-editable row at bottom */
+        function addRow(){
+            const tbl=document.getElementById('editTable').querySelector('tbody');
+            const tr=document.createElement('tr');
+            tr.contentEditable="true";
+            tr.innerHTML="<td></td><td></td><td></td>";
+            tbl.appendChild(tr);
+        }
+    </script>
+</section>
+
+
+
+<footer>
+    <p><small>© 2024 CodeGenius Labs – MIT License. Happy coding! 🚀</small></p>
+</footer>
+
+</body>
+</html>

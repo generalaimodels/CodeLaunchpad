@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 15: Object-Oriented Programming (OOP) 🚀</title>
+</head>
+<body>
+    <h1>Chapter 15: Object-Oriented Programming (OOP) in JavaScript - Unleash the Power of Objects! 🚀</h1>
+
+    <script>
+        // 🚀 Chapter 15: Object-Oriented Programming (OOP) - Structure, Reuse, and Maintainability! 🚀
+
+        // 🎯 1. Classes and Objects - Blueprints and Instances  blueprints and cookies 🍪
+
+        // Object-Oriented Programming (OOP): Paradigm organizing code around "objects". 📦
+        // - Objects bundle data (properties/attributes) and behavior (methods/functions). 🎁
+        // - OOP promotes modularity, reusability, and maintainability. 🧩
+
+        // Class: Blueprint or template for creating objects. 🗺️
+        // - Defines the structure (properties) and capabilities (methods) of objects. 🏗️
+        // - Think of a class as a cookie cutter. 🍪🔪
+
+        // Object: Instance of a class. Concrete realization of the blueprint. 🧱
+        // - Actual entities in your program, created from a class. 🍪
+        // - Think of objects as cookies made with the cookie cutter. 🍪
+
+        // Class Definition Syntax (ES6 'class' keyword):
+        //
+        // class ClassName {
+        //     constructor(param1, param2, ...) { // Constructor - initializes object properties
+        //         this.propertyName1 = param1;
+        //         this.propertyName2 = param2;
+        //         // ...
+        //     }
+        //
+        //     methodName1() { // Method 1 - object behavior
+        //         // ... method logic ...
+        //     }
+        //
+        //     methodName2() { // Method 2 - object behavior
+        //         // ... method logic ...
+        //     }
+        //     // ... more methods ...
+        // }
+
+        // Example 1: Dog Class and Objects 🐶🐾
+        console.log("\nExample 1: Dog Class and Objects");
+        class Dog { // 🐕 Class named 'Dog' - blueprint for dog objects
+            constructor(name, breed) { // 🏗️ Constructor - called when new Dog object is created
+                console.log("Dog constructor called for:", name); // Log when constructor is invoked
+                this.name = name;   // 🏷️ 'this.name' - property of the Dog object, assigned 'name' argument
+                this.breed = breed; // 🏷️ 'this.breed' - property of the Dog object, assigned 'breed' argument
+            }
+
+            bark() { // 🗣️ Method 'bark' - behavior of Dog objects
+                console.log("Woof! 🐶"); // Dog's bark sound
+            }
+
+            describe() { // 📝 Method 'describe' - provides information about the Dog
+                console.log(`Dog Name: ${this.name}, Breed: ${this.breed}`); // Uses template literals for string formatting
+            }
+        }
+        // Class Diagram (Simplified):
+        //
+        //    Dog Class 🐕
+        //    -----------------
+        //    - name: string
+        //    - breed: string
+        //    -----------------
+        //    + constructor(name, breed)
+        //    + bark()
+        //    + describe()
+
+        // Creating Objects (Instances) of Dog Class using 'new' keyword:
+        const dog1 = new Dog("Charlie", "Labrador");     // 🍪 Creating 'dog1' object, instance of 'Dog' class
+        const dog2 = new Dog("Bella", "Golden Retriever"); // 🍪 Creating 'dog2' object, another instance of 'Dog' class
+
+        console.log("Dog 1 Name:", dog1.name); // Accessing 'name' property of 'dog1' object using dot notation '.'
+        dog1.bark();                           // Calling 'bark' method on 'dog1' object using dot notation '.'
+        dog1.describe();                      // Calling 'describe' method on 'dog1' object
+        dog2.describe();                      // Calling 'describe' method on 'dog2' object
+
+        // Example 2: Car Class and Objects 🚗💨
+        console.log("\nExample 2: Car Class and Objects");
+        class Car { // 🚗 Class named 'Car' - blueprint for car objects
+            constructor(make, model, year) { // 🏗️ Constructor for Car objects
+                this.make = make;
+                this.model = model;
+                this.year = year;
+                this.speed = 0; // Initial speed of the car is 0
+            }
+
+            accelerate(increment) { // 💨 Method to increase car speed
+                this.speed += increment;
+                console.log(`Accelerating... Current speed: ${this.speed} km/h`);
+            }
+
+            brake(decrement) { // 🛑 Method to decrease car speed
+                this.speed -= decrement;
+                if (this.speed < 0) {
+                    this.speed = 0; // Speed cannot be negative
+                }
+                console.log(`Braking... Current speed: ${this.speed} km/h`);
+            }
+
+            getSpeed() { // ℹ️ Method to get current car speed
+                return this.speed;
+            }
+
+            describeCar() { // 📝 Method to describe the car
+                console.log(`Car: ${this.year} ${this.make} ${this.model}, Speed: ${this.speed} km/h`);
+            }
+        }
+
+        const car1 = new Car("Toyota", "Camry", 2022); // 🚗 Creating 'car1' object
+        const car2 = new Car("Tesla", "Model S", 2023);  // 🚗 Creating 'car2' object
+
+        car1.accelerate(20); // Increase car1 speed
+        car1.accelerate(30); // Increase car1 speed further
+        car1.describeCar();  // Describe car1 state
+        car2.describeCar();  // Describe car2 state (initial speed 0)
+        car1.brake(10);      // Decrease car1 speed
+        car1.describeCar();  // Describe car1 state after braking
+
+
+        // 🏗️ 2. Constructors and Prototypes - Initialization and Inheritance Foundation 🏗️
+
+        // Constructor: Special method within a class (named 'constructor'). 🧱
+        // - Automatically called when a new object is created using 'new' keyword. ⚙️
+        // - Primary purpose: Initialize object properties. 🛠️
+        // - If no constructor is explicitly defined, a default constructor is implicitly provided. 👻
+
+        // 'this' Keyword: Refers to the CURRENT object instance within a class. 🎯
+        // - Used inside constructor and methods to access and manipulate object's properties. 📌
+
+        // Prototypes: Mechanism for inheritance and property lookup in JavaScript. 🧬
+        // - Every object in JS has an associated prototype object (except null prototype objects). 🔗
+        // - Prototype is itself an object, and can have its own prototype (prototype chain). ⛓️
+        // - When you access a property of an object:
+        //   1. JS first looks at the object's OWN properties. 👀
+        //   2. If not found, JS looks at the object's PROTOTYPE's properties. 🔍
+        //   3. If still not found, JS looks at the prototype's prototype, and so on... (prototype chain) 🪜
+        //   4. Until property is found, or the end of the prototype chain is reached (null prototype). 🛑
+
+        // Example 1: Animal Class, Constructor, and Prototype 🐅🌿
+        console.log("\nExample 1: Animal Class, Constructor, and Prototype");
+        class Animal { // 🐅 Class 'Animal'
+            constructor(name) { // 🏗️ Constructor for Animal, takes 'name' argument
+                console.log("Animal constructor called for:", name); // Log constructor invocation
+                this.name = name; // 🏷️ Initialize 'name' property of Animal object
+            }
+
+            eat() { // 🍽️ Method 'eat' for Animal
+                console.log("Animal eating generically 🌿");
+            }
+        }
+
+        const animal = new Animal("Tiger"); // 🐅 Creating 'animal' object of class 'Animal'
+        console.log("Animal Name:", animal.name); // Accessing 'name' property
+        animal.eat();                       // Calling 'eat' method
+
+        console.log("Animal Class Prototype:", Animal.prototype); // Accessing the prototype object of 'Animal' class
+        console.log("Animal Object's __proto__:", animal.__proto__); // Accessing the prototype of 'animal' object (internal property)
+
+        console.log("animal.__proto__ === Animal.prototype:", animal.__proto__ === Animal.prototype); // ✅ They are the SAME object!
+
+        // Prototype Relationship Diagram:
+        //
+        //  Animal Class (Blueprint) 🐅       Animal.prototype (Prototype Object) ⚙️
+        //  -------------------------       ------------------------------------
+        //  constructor(name)             constructor: [Function: Animal]  <- points back to Animal class
+        //  eat()                         eat: [Function: eat]             <- 'eat' method is here
+        //                                __proto__: Object                 <- Prototype chain continues...
+        //                                (Object.prototype by default)
+
+        //  animal Object (Instance) 🐾       animal.__proto__ (Points to Animal.prototype) 🔗
+        //  --------------------------       ------------------------------------
+        //  name: "Tiger"                  (Same as Animal.prototype)
+        //  __proto__: ... 🔗--------------->
+
+        // Example 2: Prototype Chain - Method Lookup 🪜🔍
+        console.log("\nExample 2: Prototype Chain and Method Lookup");
+        const animalProto = Animal.prototype; // Get Animal's prototype
+        const hasEatMethod = animalProto.hasOwnProperty('eat'); // Check if 'eat' method is directly on Animal's prototype
+        const hasToStringMethod = animalProto.hasOwnProperty('toString'); // Check for 'toString' method
+
+        console.log("Animal.prototype has 'eat' method (hasOwnProperty):", hasEatMethod);   // Output: true - 'eat' is defined in Animal.prototype
+        console.log("Animal.prototype has 'toString' method (hasOwnProperty):", hasToStringMethod); // Output: false - 'toString' is NOT directly on Animal.prototype
+
+        console.log("animal object's 'toString' method:", animal.toString); // Access 'toString' method on 'animal' object (inherited from Object.prototype)
+        // 'toString' is not directly on Animal.prototype, but inherited from Object.prototype via prototype chain.
+
+        // Prototype Chain Visualization (Simplified):
+        //
+        //  animal Object 🐾 --> animal.__proto__ (Animal.prototype) ⚙️ --> Animal.prototype.__proto__ (Object.prototype) 📦 --> Object.prototype.__proto__ (null) 🛑
+        //                                               ^                                         ^
+        //                                               | 'eat' method is here                  | 'toString', 'valueOf' methods are here (among others)
+        //                                               ------------------------------------------
+
+        // 🧬 3. Inheritance - Code Reusability and Class Hierarchy 🧬
+
+        // Inheritance: Mechanism where a class (child class/subclass) inherits properties and methods from another class (parent class/superclass). 👪 -> 👶
+        // - Promotes code reuse - avoid rewriting common properties and methods. ♻️
+        // - Creates a hierarchy of classes - organize code based on "is-a-kind-of" relationships. 🌲
+        //   - e.g., Dog "is-a-kind-of" Animal, Car "is-a-kind-of" Vehicle.
+
+        // 'extends' Keyword: Used to establish inheritance - declare a class as a subclass of another. 🔗
+        // 'super()' Keyword: Used in subclass constructor to: ⚙️
+        //   1. Call the parent class's constructor - initialize inherited properties. 🧱
+        //   2. Access parent class's methods from within the subclass (e.g., super.parentMethod()). 📞
+
+        // Example 1: Dog Class Inheriting from Animal Class 🐕 -> 🐅
+        console.log("\nExample 1: Dog Class Inheriting from Animal Class");
+        class AnimalParent { // 🐅 Parent class 'AnimalParent' (renamed to avoid conflict with earlier Animal)
+            constructor(name) { // 🏗️ Parent constructor - takes 'name'
+                console.log("AnimalParent constructor called for:", name);
+                this.name = name;
+            }
+            eat() { // 🍽️ Parent 'eat' method
+                console.log("AnimalParent eating generically 🌿");
+            }
+        }
+
+        class DogChild extends AnimalParent { // 🐕 Child class 'DogChild' EXTENDS 'AnimalParent' - inherits from AnimalParent
+            constructor(name, breed) { // 🏗️ Child constructor - takes 'name' and 'breed'
+                super(name);        // 📞 super(name) - Call the constructor of the PARENT class (AnimalParent) with 'name' argument
+                console.log("DogChild constructor called for:", name, breed); // Log after parent constructor
+                this.breed = breed; // 🏷️ Initialize 'breed' property - specific to DogChild
+            }
+
+            bark() { // 🗣️ Child class specific method 'bark'
+                console.log("Woof! 🐶 (from DogChild)");
+            }
+
+            eat() { // 🍽️ Method OVERRIDING - Child class provides its OWN implementation of 'eat' method
+                super.eat();    // 📞 super.eat() - Call the 'eat' method of the PARENT class (AnimalParent)
+                console.log("DogChild eating specifically 🍖"); // Add specific behavior for DogChild 'eat'
+            }
+        }
+
+        const myDog = new DogChild("Buddy", "German Shepherd"); // 🐕 Creating 'myDog' object of 'DogChild' class
+        console.log("My Dog's Name:", myDog.name); // Inherited property 'name' from AnimalParent
+        console.log("My Dog's Breed:", myDog.breed); // Property 'breed' specific to DogChild
+        myDog.eat();            // Calling 'eat' method - DogChild's version (overrides AnimalParent's)
+        myDog.bark();           // Calling 'bark' method - specific to DogChild
+
+        // Inheritance Hierarchy Diagram:
+        //
+        //        AnimalParent (Superclass) 🐅
+        //            ^
+        //            | extends
+        //        DogChild (Subclass) 🐕
+        //
+        // DogChild inherits: 'name' property, 'eat()' method from AnimalParent.
+        // DogChild extends: adds 'breed' property, 'bark()' method, and overrides 'eat()' method.
+
+        // Example 2: Vehicle and Car Inheritance Hierarchy 🚗 -> Vehicle 🚌
+        console.log("\nExample 2: Vehicle and Car Inheritance Hierarchy");
+        class Vehicle { // 🚌 Parent class 'Vehicle'
+            constructor(make, model) { // 🏗️ Vehicle constructor - takes 'make', 'model'
+                this.make = make;
+                this.model = model;
+            }
+            startEngine() { // ⚙️ Vehicle 'startEngine' method
+                console.log("Vehicle engine started! 🚗💨");
+            }
+            stopEngine() { // 🛑 Vehicle 'stopEngine' method
+                console.log("Vehicle engine stopped! 🛑");
+            }
+            describeVehicle() { // 📝 Vehicle 'describeVehicle' method
+                console.log(`Vehicle: ${this.make} ${this.model}`);
+            }
+        }
+
+        class CarSubclass extends Vehicle { // 🚗 Child class 'CarSubclass' extends 'Vehicle'
+            constructor(make, model, numDoors) { // 🏗️ CarSubclass constructor - takes 'make', 'model', 'numDoors'
+                super(make, model); // 📞 Call Vehicle constructor with 'make', 'model'
+                this.numDoors = numDoors; // 🏷️ Initialize 'numDoors' property - specific to CarSubclass
+            }
+            honk() { // 📢 CarSubclass specific method 'honk'
+                console.log("Honk Honk! 📢🚗");
+            }
+            describeCarSubclass() { // 📝 CarSubclass 'describeCarSubclass' method
+                super.describeVehicle(); // 📞 Call parent 'describeVehicle' method for common description
+                console.log(`It's a car with ${this.numDoors} doors.`); // Add car-specific details
+            }
+        }
+
+        const myCar = new CarSubclass("Honda", "Civic", 4); // 🚗 Creating 'myCar' object of 'CarSubclass'
+        myCar.startEngine();      // Inherited 'startEngine' method from Vehicle
+        myCar.honk();             // CarSubclass specific 'honk' method
+        myCar.describeCarSubclass(); // CarSubclass specific 'describeCarSubclass' method
+        myCar.stopEngine();       // Inherited 'stopEngine' method from Vehicle
+
+        // Inheritance Hierarchy Diagram:
+        //
+        //        Vehicle (Superclass) 🚌
+        //            ^
+        //            | extends
+        //        CarSubclass (Subclass) 🚗
+        //
+        // CarSubclass inherits: 'make', 'model' properties, 'startEngine()', 'stopEngine()', 'describeVehicle()' methods.
+        // CarSubclass extends: adds 'numDoors' property, 'honk()' method, 'describeCarSubclass()' method (extending description).
+
+
+        // 🎭 4. Polymorphism - Many Forms, One Interface 🎭
+
+        // Polymorphism (Greek: "many forms"): Ability of objects of DIFFERENT classes to respond to the SAME method call in their OWN way. 🎭
+        // - "One interface, multiple implementations." 🔄
+        // - Achieved in JavaScript through METHOD OVERRIDING in subclasses. ⚙️ -> 🎭
+        //   - Subclass provides its own implementation of a method already defined in its superclass. ✍️
+
+        // Example 1: Animal Sounds - Polymorphic Behavior 🐾🎵
+        console.log("\nExample 1: Animal Sounds - Polymorphism");
+        class AnimalPoly { // 🐾 Base class 'AnimalPoly' (renamed to avoid conflict)
+            constructor(name) {
+                this.name = name;
+            }
+            makeSound() { // 🎵 Base class 'makeSound' method - generic sound
+                console.log("Generic animal sound 🐾🎵");
+            }
+        }
+
+        class DogPoly extends AnimalPoly { // 🐕 Subclass 'DogPoly' extends 'AnimalPoly'
+            constructor(name, breed) {
+                super(name);
+                this.breed = breed;
+            }
+            makeSound() { // 🎵 Method OVERRIDING - DogPoly provides its own 'makeSound'
+                console.log("Woof! Woof! 🐶🎵"); // Dog-specific sound
+            }
+        }
+
+        class CatPoly extends AnimalPoly { // 🐈 Subclass 'CatPoly' extends 'AnimalPoly'
+            makeSound() { // 🎵 Method OVERRIDING - CatPoly provides its own 'makeSound'
+                console.log("Meow! Meow! 🐈🎵"); // Cat-specific sound
+            }
+        }
+
+        const genericAnimal = new AnimalPoly("Generic Animal"); // 🐾 Generic Animal object
+        const petDog = new DogPoly("Rover", "Beagle");       // 🐕 Dog object
+        const petCat = new CatPoly("Whiskers");            // 🐈 Cat object
+
+        genericAnimal.makeSound(); // Calls AnimalPoly's makeSound - Generic animal sound 🐾🎵
+        petDog.makeSound();      // Calls DogPoly's makeSound - Woof! Woof! 🐶🎵 (Polymorphic behavior)
+        petCat.makeSound();      // Calls CatPoly's makeSound - Meow! Meow! 🐈🎵 (Polymorphic behavior)
+
+        // Polymorphism Diagram:
+        //
+        //  AnimalPoly (Base Class) 🐾          DogPoly (Subclass) 🐕           CatPoly (Subclass) 🐈
+        //  -----------------------          -----------------------          -----------------------
+        //  makeSound() -> Generic 🎵         makeSound() -> Woof! 🐶🎵        makeSound() -> Meow! 🐈🎵
+        //
+        //  Each subclass provides a specialized implementation of makeSound(), demonstrating polymorphism.
+
+        // Example 2: Shape Calculation - Polymorphic Area Calculation 📐📏
+        console.log("\nExample 2: Shape Area Calculation - Polymorphism");
+        class Shape { // 📐 Base class 'Shape'
+            calculateArea() { // 📏 Base class 'calculateArea' - generic (returns 0 as default)
+                console.log("Calculating area for a generic shape (default 0)");
+                return 0; // Default area for generic shape
+            }
+        }
+
+        class Circle extends Shape { // ⚪ Subclass 'Circle' extends 'Shape'
+            constructor(radius) {
+                super();
+                this.radius = radius;
+            }
+            calculateArea() { // 📏 Method OVERRIDING - Circle provides its own 'calculateArea'
+                const area = Math.PI * this.radius * this.radius; // Circle area formula
+                console.log(`Calculating area for Circle (radius: ${this.radius})`);
+                return area;
+            }
+        }
+
+        class Square extends Shape { // ⬜ Subclass 'Square' extends 'Shape'
+            constructor(side) {
+                super();
+                this.side = side;
+            }
+            calculateArea() { // 📏 Method OVERRIDING - Square provides its own 'calculateArea'
+                const area = this.side * this.side; // Square area formula
+                console.log(`Calculating area for Square (side: ${this.side})`);
+                return area;
+            }
+        }
+
+        const genericShape = new Shape();         // 📐 Generic Shape object
+        const myCircle = new Circle(5);          // ⚪ Circle object with radius 5
+        const mySquare = new Square(4);          // ⬜ Square object with side 4
+
+        console.log("Generic Shape Area:", genericShape.calculateArea()); // Calls Shape's calculateArea - 0
+        console.log("Circle Area:", myCircle.calculateArea());       // Calls Circle's calculateArea - Circle specific calculation
+        console.log("Square Area:", mySquare.calculateArea());       // Calls Square's calculateArea - Square specific calculation
+
+        // Polymorphism Diagram:
+        //
+        //  Shape (Base Class) 📐            Circle (Subclass) ⚪             Square (Subclass) ⬜
+        //  ---------------------            ---------------------            ---------------------
+        //  calculateArea() -> 0 📏         calculateArea() -> Circle Area 📏  calculateArea() -> Square Area 📏
+        //
+        // Each subclass calculates area differently, demonstrating polymorphic behavior based on shape type.
+
+
+        // 🔒 5. Encapsulation - Data Hiding and Controlled Access 🔒
+
+        // Encapsulation: Bundling of data (properties) and methods that operate on that data within a single unit (class). 📦🔒
+        // - Hiding internal details (implementation) of an object from the outside world. 🙈
+        // - Exposing only a controlled interface (public methods) to interact with the object. 🔓
+        // - Benefits:
+        //   - Data protection: Prevent direct, unintended modification of internal state. 🛡️
+        //   - Code maintainability: Easier to change internal implementation without breaking external code. 🛠️
+        //   - Abstraction: Simplify object usage by hiding complex internal workings. 🧘
+
+        // JavaScript Encapsulation (Achieved through closures in older JS, and class features in ES6, but no truly "private" members like in some languages):
+        // - In JavaScript, true private members (with strict enforcement at runtime) are not natively available in the traditional sense (prior to ES2019/private class fields - more advanced).
+        // - Encapsulation is often achieved through conventions and closures to create a degree of privacy and controlled access. 🤝
+
+        // Example 1: Encapsulation using Closures (Simulating Private Members) 🙈🔒
+        console.log("\nExample 1: Encapsulation using Closures");
+        function createPersonEncapsulated(name, age) { // 🏭 Factory function to create 'person' objects with encapsulation
+            let _name = name; // 🙈 '_name' - "Private" variable (lexically scoped within createPersonEncapsulated)
+            let _age = age;   // 🙈 '_age'  - "Private" variable
+
+            return { // 📦 Return an object - public interface to interact with the "private" data
+                getName: function() { // 🔓 Public method 'getName' - provides READ access to '_name'
+                    return _name;
+                },
+                getAge: function() {  // 🔓 Public method 'getAge' - provides READ access to '_age'
+                    return _age;
+                },
+                setAge: function(newAge) { // 🔓 Public method 'setAge' - provides CONTROLLED WRITE access to '_age'
+                    if (typeof newAge === 'number' && newAge >= 0 && newAge <= 120) { // Input validation - age must be valid
+                        _age = newAge; // Update '_age' only if validation passes
+                        console.log("Age updated to:", _age);
+                    } else {
+                        console.warn("Invalid age value. Age not updated."); // Warning for invalid age
+                    }
+                }
+                // No direct public access to '_name' or '_age' - encapsulated! 🔒
+            };
+        }
+
+        const personEncapsulated = createPersonEncapsulated("Alice", 28); // 👤 Create encapsulated 'personEncapsulated' object
+        console.log("Encapsulated Person Name:", personEncapsulated.getName()); // Access name via getter
+        console.log("Encapsulated Person Age:", personEncapsulated.getAge());   // Access age via getter
+
+        personEncapsulated.setAge(30); // Update age via setter (valid age)
+        console.log("Encapsulated Person Age after setAge(30):", personEncapsulated.getAge()); // Verify updated age
+
+        personEncapsulated.setAge(-5); // Attempt to set invalid age (negative) - validation in setter prevents it
+        console.log("Encapsulated Person Age after setAge(-5):", personEncapsulated.getAge()); // Age remains unchanged
+
+        // Attempting direct access to '_name' or '_age' from outside will NOT work - they are not properties of 'personEncapsulated' object.
+        // console.log(personEncapsulated._name); // Error - '_name' is not a property of 'personEncapsulated'
+        // console.log(personEncapsulated._age);  // Error - '_age' is not a property of 'personEncapsulated'
+
+        // Encapsulation Diagram (Conceptual):
+        //
+        //  personEncapsulated Object 👤🔒
+        //  --------------------------
+        //  (Internal - via closure)   |  Public Interface (Methods) 🔓
+        //  --------------------------|-----------------------------
+        //  _name: "Alice"  🙈         |  getName(): returns _name
+        //  _age: 28       🙈         |  getAge(): returns _age
+        //                             |  setAge(newAge): validates & updates _age
+        //  --------------------------|-----------------------------
+        //  External code can ONLY interact with the object through the defined public methods, not directly with internal data. 🔒
+
+
+        // ✅ 6. Example (from your instructions): Revisit Dog Class 🐕
+
+        console.log("\nExample from Instructions: Dog Class");
+        class DogInstruction { // 🐕 Class 'DogInstruction' (revisited from instructions)
+            constructor(name, breed) {
+                this.name = name;
+                this.breed = breed;
+            }
+            bark() {
+                console.log("Woof! 🐶 (Instruction Example)");
+            }
+        }
+        const myDogInstruction = new DogInstruction("Buddy", "Labrador"); // 🐕 Create 'myDogInstruction' object
+        myDogInstruction.bark(); // Call 'bark' method - Output: Woof! 🐶 (Instruction Example)
+
+
+        // 🎉 Chapter 15 Completed! You are now equipped with OOP principles in JavaScript! 🚀
+        console.log("\nChapter 15: Object-Oriented Programming (OOP) - Completed! 🚀 Embrace OOP for structured, reusable, and maintainable code! ✨");
+
+    </script>
+</body>
+</html>

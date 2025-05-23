@@ -1,0 +1,250 @@
+<!--
+  HTML Div & Classes: Comprehensive Guide with 10 Examples
+
+  This file demonstrates the use of <div> elements and HTML classes in various scenarios.
+  Each example is self-contained and explained in detail.
+  All code follows best practices for readability, maintainability, and scalability.
+  Exception cases and advanced usage are included.
+  CSS is embedded for clarity.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Div & Classes: 10 Examples</title>
+  <style>
+    /* General Styles for Visual Clarity */
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 2rem; }
+    h2 { color: #2c3e50; margin-top: 2.5rem; }
+    .example { background: #fff; border: 1px solid #e1e1e1; border-radius: 8px; margin: 2rem 0; padding: 1.5rem; box-shadow: 0 2px 8px #0001; }
+    .explanation { color: #555; font-size: 1rem; margin-bottom: 1rem; }
+    .code-block { background: #f4f4f4; border-radius: 4px; padding: 1rem; font-family: 'Fira Mono', 'Consolas', monospace; font-size: 0.98rem; margin-bottom: 1rem; overflow-x: auto; }
+    .output { margin-top: 1rem; }
+    /* Example-specific styles */
+    .red-box { background: #ffdddd; border: 1px solid #e74c3c; padding: 1rem; }
+    .blue-box { background: #ddeeff; border: 1px solid #3498db; padding: 1rem; }
+    .card { border: 1px solid #ccc; border-radius: 6px; padding: 1rem; margin: 0.5rem 0; background: #fafafa; }
+    .highlight { background: #fff3cd; color: #856404; }
+    .flex-row { display: flex; gap: 1rem; }
+    .column { flex: 1; padding: 1rem; background: #e3e3e3; border-radius: 4px; }
+    .btn { padding: 0.5rem 1rem; border: none; border-radius: 4px; background: #2980b9; color: #fff; cursor: pointer; }
+    .btn:hover { background: #1abc9c; }
+    .responsive { width: 100%; max-width: 400px; margin: auto; }
+    @media (max-width: 600px) {
+      .flex-row { flex-direction: column; }
+    }
+    /* For Example 10 */
+    .theme-dark { background: #222; color: #eee; }
+    .theme-light { background: #fff; color: #222; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML &lt;div&gt; and Classes: 10 Examples</h1>
+
+  <!-- Example 1: Basic <div> Usage -->
+  <div class="example">
+    <h2>Example 1: Basic &lt;div&gt; Usage</h2>
+    <div class="explanation">
+      The <code>&lt;div&gt;</code> element is a generic container for flow content. It has no semantic meaning by itself.
+      Use it to group elements for styling or scripting.
+    </div>
+    <div class="code-block">
+      &lt;div&gt;This is a simple div container.&lt;/div&gt;
+    </div>
+    <div class="output">
+      <div>This is a simple div container.</div>
+    </div>
+  </div>
+
+  <!-- Example 2: Applying a Single Class to a <div> -->
+  <div class="example">
+    <h2>Example 2: Applying a Single Class</h2>
+    <div class="explanation">
+      Classes allow you to apply CSS styles to one or more elements. Here, we use <code>class="red-box"</code> to style the div.
+    </div>
+    <div class="code-block">
+      &lt;div class="red-box"&gt;This div has a red background.&lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="red-box">This div has a red background.</div>
+    </div>
+  </div>
+
+  <!-- Example 3: Multiple Classes on a <div> -->
+  <div class="example">
+    <h2>Example 3: Multiple Classes</h2>
+    <div class="explanation">
+      You can assign multiple classes to a single element, separated by spaces. All styles from those classes are applied.
+    </div>
+    <div class="code-block">
+      &lt;div class="blue-box highlight"&gt;This div is blue and highlighted.&lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="blue-box highlight">This div is blue and highlighted.</div>
+    </div>
+  </div>
+
+  <!-- Example 4: Grouping Content with <div> -->
+  <div class="example">
+    <h2>Example 4: Grouping Content</h2>
+    <div class="explanation">
+      <code>&lt;div&gt;</code> is often used to group related content, such as a card with a title and description.
+    </div>
+    <div class="code-block">
+      &lt;div class="card"&gt;
+        &lt;h3&gt;Card Title&lt;/h3&gt;
+        &lt;p&gt;This is a card description.&lt;/p&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="card">
+        <h3>Card Title</h3>
+        <p>This is a card description.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 5: Nesting <div> Elements -->
+  <div class="example">
+    <h2>Example 5: Nesting &lt;div&gt; Elements</h2>
+    <div class="explanation">
+      <code>&lt;div&gt;</code> elements can be nested to create complex layouts or groupings.
+    </div>
+    <div class="code-block">
+      &lt;div class="card"&gt;
+        &lt;div class="highlight"&gt;Header&lt;/div&gt;
+        &lt;div&gt;Body content here.&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="card">
+        <div class="highlight">Header</div>
+        <div>Body content here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 6: Using <div> for Layout (Flexbox) -->
+  <div class="example">
+    <h2>Example 6: Layout with Flexbox</h2>
+    <div class="explanation">
+      <code>&lt;div&gt;</code> is commonly used for layout. Here, we use classes and Flexbox to create a responsive row of columns.
+    </div>
+    <div class="code-block">
+      &lt;div class="flex-row"&gt;
+        &lt;div class="column"&gt;Column 1&lt;/div&gt;
+        &lt;div class="column"&gt;Column 2&lt;/div&gt;
+        &lt;div class="column"&gt;Column 3&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="flex-row">
+        <div class="column">Column 1</div>
+        <div class="column">Column 2</div>
+        <div class="column">Column 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 7: Dynamic Class Assignment (with JavaScript) -->
+  <div class="example">
+    <h2>Example 7: Dynamic Class Assignment</h2>
+    <div class="explanation">
+      Classes can be added, removed, or toggled using JavaScript for interactivity.
+    </div>
+    <div class="code-block">
+      &lt;div id="toggleDiv" class="card"&gt;Click the button to highlight me!&lt;/div&gt;
+      &lt;button onclick="toggleHighlight()" class="btn"&gt;Toggle Highlight&lt;/button&gt;
+
+      &lt;script&gt;
+        function toggleHighlight() {
+          document.getElementById('toggleDiv').classList.toggle('highlight');
+        }
+      &lt;/script&gt;
+    </div>
+    <div class="output">
+      <div id="toggleDiv" class="card">Click the button to highlight me!</div>
+      <button onclick="toggleHighlight()" class="btn">Toggle Highlight</button>
+    </div>
+    <script>
+      function toggleHighlight() {
+        document.getElementById('toggleDiv').classList.toggle('highlight');
+      }
+    </script>
+  </div>
+
+  <!-- Example 8: Exception - Using <div> for Non-Semantic Content -->
+  <div class="example">
+    <h2>Example 8: Exception - Avoid <div> for Semantic Content</h2>
+    <div class="explanation">
+      <b>Best Practice:</b> Use semantic elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, etc.) for meaningful content.
+      Use <code>&lt;div&gt;</code> only when no semantic element fits.
+    </div>
+    <div class="code-block">
+      &lt;!-- Bad: --&gt;
+      &lt;div&gt;This is a navigation bar&lt;/div&gt;
+
+      &lt;!-- Good: --&gt;
+      &lt;nav&gt;This is a navigation bar&lt;/nav&gt;
+    </div>
+    <div class="output">
+      <div style="margin-bottom:0.5rem;">Bad: <div style="display:inline;">This is a navigation bar</div></div>
+      <div>Good: <nav style="display:inline;">This is a navigation bar</nav></div>
+    </div>
+  </div>
+
+  <!-- Example 9: Responsive Design with Classes -->
+  <div class="example">
+    <h2>Example 9: Responsive Design with Classes</h2>
+    <div class="explanation">
+      Classes can be used to make <code>&lt;div&gt;</code> elements responsive. Resize the window to see the effect.
+    </div>
+    <div class="code-block">
+      &lt;div class="responsive card"&gt;
+        This card is responsive and centered.
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="responsive card">
+        This card is responsive and centered.
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 10: Multiple Classes for Theming (Dark/Light) -->
+  <div class="example">
+    <h2>Example 10: Multiple Classes for Theming</h2>
+    <div class="explanation">
+      Multiple classes can be used to switch themes (e.g., dark/light mode) dynamically.
+    </div>
+    <div class="code-block">
+      &lt;div id="themeDiv" class="card theme-light"&gt;This div changes theme.&lt;/div&gt;
+      &lt;button onclick="toggleTheme()" class="btn"&gt;Toggle Theme&lt;/button&gt;
+
+      &lt;script&gt;
+        function toggleTheme() {
+          const el = document.getElementById('themeDiv');
+          el.classList.toggle('theme-dark');
+          el.classList.toggle('theme-light');
+        }
+      &lt;/script&gt;
+    </div>
+    <div class="output">
+      <div id="themeDiv" class="card theme-light">This div changes theme.</div>
+      <button onclick="toggleTheme()" class="btn">Toggle Theme</button>
+    </div>
+    <script>
+      function toggleTheme() {
+        const el = document.getElementById('themeDiv');
+        el.classList.toggle('theme-dark');
+        el.classList.toggle('theme-light');
+      }
+    </script>
+  </div>
+
+  <!-- End of Examples -->
+
+</body>
+</html>

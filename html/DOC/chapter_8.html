@@ -1,0 +1,358 @@
+<!--
+    HTML Page Title & HTML Tables: 10 Detailed Examples and Explanations
+    --------------------------------------------------------------------
+    This file demonstrates the use of HTML page titles and tables in various scenarios.
+    Each example is explained in detail, covering syntax, attributes, accessibility, and best practices.
+    All code follows modern standards and is designed for clarity and technical excellence.
+    --------------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Example 1: Basic Page Title -->
+    <title>HTML Page Title & Tables: 10 Examples</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Example 2: Dynamic Page Title (with JavaScript) -->
+    <script>
+        // Example 2: Dynamically change the page title after 3 seconds
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.title = "HTML Tables & Page Title: Dynamic Example";
+            }, 3000);
+        });
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 2rem; background: #f9f9f9; color: #222; }
+        h1 { color: #1565c0; }
+        section { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; margin-bottom: 2rem; padding: 1.5rem; }
+        code, pre { background: #f3f3f3; border-radius: 4px; padding: 2px 6px; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+        th, td { border: 1px solid #bdbdbd; padding: 0.5rem 1rem; text-align: left; }
+        th { background: #e3f2fd; }
+        caption { caption-side: top; font-weight: bold; color: #1976d2; margin-bottom: 0.5rem; }
+        .note { color: #b71c1c; font-weight: bold; }
+        ul { margin-top: 0.5rem; }
+        .responsive-table { overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>HTML Page Title & Tables: 10 Detailed Examples</h1>
+    <p>
+        This file demonstrates the use of HTML page titles and tables in various scenarios, covering syntax, attributes, accessibility, and best practices.
+        Each example is explained in detail for clarity.
+    </p>
+
+    <!-- Example 1: Basic Page Title (see <title> in <head>) -->
+    <section>
+        <h2>1. Basic Page Title</h2>
+        <p>
+            The <code>&lt;title&gt;</code> element defines the title of the HTML document, shown in the browser tab and used by search engines.
+        </p>
+        <pre>
+&lt;title&gt;HTML Page Title &amp; Tables: 10 Examples&lt;/title&gt;
+        </pre>
+        <ul>
+            <li>Place <code>&lt;title&gt;</code> inside the <code>&lt;head&gt;</code> section.</li>
+            <li>Keep titles concise and descriptive for SEO and usability.</li>
+        </ul>
+    </section>
+
+    <!-- Example 2: Dynamic Page Title (with JavaScript) -->
+    <section>
+        <h2>2. Dynamic Page Title (with JavaScript)</h2>
+        <p>
+            You can change the page title dynamically using JavaScript.
+        </p>
+        <pre>
+&lt;script&gt;
+    document.title = "New Page Title";
+&lt;/script&gt;
+        </pre>
+        <ul>
+            <li>Useful for single-page applications or dynamic content.</li>
+            <li>Try waiting 3 seconds to see the title change in your browser tab.</li>
+        </ul>
+    </section>
+
+    <!-- Example 3: Basic Table Structure -->
+    <section>
+        <h2>3. Basic Table Structure</h2>
+        <p>
+            The simplest table uses <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (table row), <code>&lt;th&gt;</code> (header cell), and <code>&lt;td&gt;</code> (data cell).
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Alice&lt;/td&gt;
+        &lt;td&gt;24&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td>Alice</td>
+                    <td>24</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li>Always use <code>&lt;th&gt;</code> for header cells for accessibility.</li>
+        </ul>
+    </section>
+
+    <!-- Example 4: Table with Caption and Summary -->
+    <section>
+        <h2>4. Table with <code>&lt;caption&gt;</code> and Summary</h2>
+        <p>
+            Use <code>&lt;caption&gt;</code> to provide a title or summary for the table.
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;caption&gt;Student Grades&lt;/caption&gt;
+    ...
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <caption>Student Grades</caption>
+                <tr>
+                    <th>Student</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td>Bob</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>Carol</td>
+                    <td>B+</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li><code>&lt;caption&gt;</code> improves accessibility and context for screen readers.</li>
+        </ul>
+    </section>
+
+    <!-- Example 5: Table with <thead>, <tbody>, <tfoot> -->
+    <section>
+        <h2>5. Table with <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code></h2>
+        <p>
+            Use these elements to semantically group table sections.
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;$10&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Pen&lt;/td&gt;&lt;td&gt;$2&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;&lt;td&gt;Total&lt;/td&gt;&lt;td&gt;$12&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <thead>
+                    <tr><th>Product</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Book</td><td>$10</td></tr>
+                    <tr><td>Pen</td><td>$2</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr><td>Total</td><td>$12</td></tr>
+                </tfoot>
+            </table>
+        </div>
+        <ul>
+            <li>Improves accessibility and enables sticky headers/footers in some browsers.</li>
+        </ul>
+    </section>
+
+    <!-- Example 6: Table with Rowspan and Colspan -->
+    <section>
+        <h2>6. Table with <code>rowspan</code> and <code>colspan</code></h2>
+        <p>
+            Use <code>rowspan</code> and <code>colspan</code> to merge cells vertically or horizontally.
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th rowspan="2"&gt;Name&lt;/th&gt;
+        &lt;th colspan="2"&gt;Scores&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Math&lt;/th&gt;
+        &lt;th&gt;Science&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Eve&lt;/td&gt;
+        &lt;td&gt;95&lt;/td&gt;
+        &lt;td&gt;98&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <tr>
+                    <th rowspan="2">Name</th>
+                    <th colspan="2">Scores</th>
+                </tr>
+                <tr>
+                    <th>Math</th>
+                    <th>Science</th>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>95</td>
+                    <td>98</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li><code>rowspan</code> merges cells vertically, <code>colspan</code> merges horizontally.</li>
+        </ul>
+    </section>
+
+    <!-- Example 7: Accessible Table with Scope Attribute -->
+    <section>
+        <h2>7. Accessible Table with <code>scope</code> Attribute</h2>
+        <p>
+            Use <code>scope="col"</code> or <code>scope="row"</code> for <code>&lt;th&gt;</code> to improve accessibility for screen readers.
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th scope="col"&gt;City&lt;/th&gt;
+        &lt;th scope="col"&gt;Country&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Paris&lt;/td&gt;
+        &lt;td&gt;France&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <tr>
+                    <th scope="col">City</th>
+                    <th scope="col">Country</th>
+                </tr>
+                <tr>
+                    <td>Paris</td>
+                    <td>France</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li>Improves navigation for assistive technologies.</li>
+        </ul>
+    </section>
+
+    <!-- Example 8: Table with Empty Cells and <td> vs <th> -->
+    <section>
+        <h2>8. Table with Empty Cells and <code>&lt;td&gt;</code> vs <code>&lt;th&gt;</code></h2>
+        <p>
+            Use <code>&lt;th&gt;</code> for headers, <code>&lt;td&gt;</code> for data. Empty cells are valid and sometimes useful.
+        </p>
+        <pre>
+&lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;A&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;B&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <tr><th>Item</th><th>Value</th></tr>
+                <tr><td>A</td><td>10</td></tr>
+                <tr><td>B</td><td></td></tr>
+            </table>
+        </div>
+        <ul>
+            <li>Empty <code>&lt;td&gt;</code> cells are allowed and can be styled as needed.</li>
+        </ul>
+    </section>
+
+    <!-- Example 9: Table with Inline CSS Styling -->
+    <section>
+        <h2>9. Table with Inline CSS Styling</h2>
+        <p>
+            You can style tables and cells using inline CSS or classes.
+        </p>
+        <pre>
+&lt;table style="border:2px solid #1976d2;"&gt;
+    &lt;tr&gt;
+        &lt;th style="background:#bbdefb;"&gt;Header&lt;/th&gt;
+        &lt;td style="color:#d84315;"&gt;Styled Cell&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+        <div class="responsive-table">
+            <table style="border:2px solid #1976d2;">
+                <tr>
+                    <th style="background:#bbdefb;">Header</th>
+                    <td style="color:#d84315;">Styled Cell</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li>Use CSS classes for maintainability in larger projects.</li>
+        </ul>
+    </section>
+
+    <!-- Example 10: Responsive Table (Horizontal Scroll) -->
+    <section>
+        <h2>10. Responsive Table (Horizontal Scroll)</h2>
+        <p>
+            For wide tables, wrap in a container with <code>overflow-x: auto;</code> to enable horizontal scrolling on small screens.
+        </p>
+        <pre>
+&lt;div style="overflow-x:auto;"&gt;
+    &lt;table&gt;...&lt;/table&gt;
+&lt;/div&gt;
+        </pre>
+        <div class="responsive-table">
+            <table>
+                <tr>
+                    <th>Header 1</th><th>Header 2</th><th>Header 3</th><th>Header 4</th><th>Header 5</th>
+                </tr>
+                <tr>
+                    <td>Data 1</td><td>Data 2</td><td>Data 3</td><td>Data 4</td><td>Data 5</td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li>Improves usability on mobile devices.</li>
+        </ul>
+    </section>
+
+    <!-- Additional Notes and Exceptions -->
+    <section>
+        <h2>Additional Notes &amp; Exceptions</h2>
+        <ul>
+            <li>Do not use tables for layout; use them only for tabular data.</li>
+            <li>Always provide table headers for accessibility.</li>
+            <li>Use <code>&lt;caption&gt;</code> for table titles, not as a replacement for <code>&lt;th&gt;</code>.</li>
+            <li>For complex tables, use <code>scope</code>, <code>id</code>, and <code>headers</code> attributes for accessibility.</li>
+            <li>Empty <code>&lt;td&gt;</code> cells can be filled with <code>&amp;nbsp;</code> if you want to ensure a minimum cell height.</li>
+            <li>Page title is critical for SEO and user experience; keep it unique and relevant.</li>
+        </ul>
+    </section>
+</body>
+</html>

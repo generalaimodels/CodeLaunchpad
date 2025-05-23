@@ -1,0 +1,277 @@
+<!--
+  HTML Layout: Comprehensive Guide with 10 Examples
+
+  This file demonstrates various HTML layout techniques, including semantic elements, classic and modern CSS layout methods, responsive design, and exceptions.
+  Each example is self-contained, explained, and follows best practices for clarity, maintainability, and scalability.
+  All code and explanations are in this single file.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Layout: 10 Examples</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 2rem; }
+    h2 { color: #2c3e50; margin-top: 2.5rem; }
+    .example { background: #fff; border: 1px solid #e1e1e1; border-radius: 8px; margin: 2rem 0; padding: 1.5rem; box-shadow: 0 2px 8px #0001; }
+    .explanation { color: #555; font-size: 1rem; margin-bottom: 1rem; }
+    .code-block { background: #f4f4f4; border-radius: 4px; padding: 1rem; font-family: 'Fira Mono', 'Consolas', monospace; font-size: 0.98rem; margin-bottom: 1rem; overflow-x: auto; }
+    .output { margin-top: 1rem; }
+    .layout-demo { border: 1px solid #bbb; border-radius: 6px; margin: 0.5rem 0; overflow: hidden; }
+    .header, .footer { background: #2980b9; color: #fff; padding: 1rem; text-align: center; }
+    .nav { background: #f1c40f; color: #222; padding: 1rem; }
+    .main { background: #ecf0f1; padding: 1rem; }
+    .sidebar { background: #8e44ad; color: #fff; padding: 1rem; }
+    .content { background: #fff; padding: 1rem; }
+    .row { display: flex; }
+    .col { flex: 1; padding: 1rem; }
+    .col-2 { flex: 2; }
+    .box { background: #e0e0e0; border-radius: 4px; padding: 1rem; margin: 0.5rem; text-align: center; }
+    .grid-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-item { background: #27ae60; color: #fff; padding: 1.5rem; border-radius: 4px; text-align: center; }
+    .float-container { overflow: auto; }
+    .float-left { float: left; width: 45%; background: #e67e22; color: #fff; margin-right: 2%; padding: 1rem; border-radius: 4px; }
+    .float-right { float: right; width: 45%; background: #16a085; color: #fff; margin-left: 2%; padding: 1rem; border-radius: 4px; }
+    .clearfix::after { content: ""; clear: both; display: table; }
+    .centered { display: flex; justify-content: center; align-items: center; height: 120px; background: #f9e79f; border-radius: 4px; }
+    .responsive-layout { display: flex; flex-wrap: wrap; }
+    .responsive-layout > div { flex: 1 1 200px; margin: 0.5rem; background: #dff9fb; padding: 1rem; border-radius: 4px; text-align: center; }
+    .exception { background: #eeffcd; color: #856404; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 0.5rem; }
+    @media (max-width: 700px) {
+      .row, .grid-demo { flex-direction: column; display: block; }
+      .sidebar { margin-bottom: 1rem; }
+      .responsive-layout { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML <code>Layout</code>: 10 Examples</h1>
+
+  <!-- Example 1: Semantic Layout Structure -->
+  <div class="example">
+    <h2>Example 1: Semantic Layout Structure</h2>
+    <div class="explanation">
+      Use semantic HTML5 elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>) for clear, accessible layouts.
+    </div>
+    <div class="code-block">
+      &lt;header&gt;Header&lt;/header&gt;
+      &lt;nav&gt;Navigation&lt;/nav&gt;
+      &lt;main&gt;Main Content&lt;/main&gt;
+      &lt;aside&gt;Sidebar&lt;/aside&gt;
+      &lt;footer&gt;Footer&lt;/footer&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo">
+        <header class="header">Header</header>
+        <nav class="nav">Navigation</nav>
+        <main class="main">Main Content</main>
+        <aside class="sidebar">Sidebar</aside>
+        <footer class="footer">Footer</footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 2: Classic Layout with <div> and CSS -->
+  <div class="example">
+    <h2>Example 2: Classic Layout with <code>&lt;div&gt;</code> and CSS</h2>
+    <div class="explanation">
+      Before HTML5, layouts were often built with <code>&lt;div&gt;</code> and CSS classes.
+    </div>
+    <div class="code-block">
+      &lt;div class="header"&gt;Header&lt;/div&gt;
+      &lt;div class="nav"&gt;Nav&lt;/div&gt;
+      &lt;div class="row"&gt;
+        &lt;div class="col sidebar"&gt;Sidebar&lt;/div&gt;
+        &lt;div class="col-2 content"&gt;Content&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="footer"&gt;Footer&lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo">
+        <div class="header">Header</div>
+        <div class="nav">Nav</div>
+        <div class="row">
+          <div class="col sidebar">Sidebar</div>
+          <div class="col-2 content">Content</div>
+        </div>
+        <div class="footer">Footer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 3: Two-Column Layout with Flexbox -->
+  <div class="example">
+    <h2>Example 3: Two-Column Layout with Flexbox</h2>
+    <div class="explanation">
+      Flexbox is a modern, powerful way to create flexible layouts.
+    </div>
+    <div class="code-block">
+      &lt;div style="display:flex;"&gt;
+        &lt;div style="flex:1;"&gt;Left Column&lt;/div&gt;
+        &lt;div style="flex:2;"&gt;Right Column&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo row">
+        <div class="col box">Left Column</div>
+        <div class="col-2 box">Right Column</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 4: Grid Layout with CSS Grid -->
+  <div class="example">
+    <h2>Example 4: Grid Layout with CSS Grid</h2>
+    <div class="explanation">
+      CSS Grid enables two-dimensional layouts with rows and columns.
+    </div>
+    <div class="code-block">
+      &lt;div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;"&gt;
+        &lt;div&gt;1&lt;/div&gt;
+        &lt;div&gt;2&lt;/div&gt;
+        &lt;div&gt;3&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo grid-demo">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 5: Float-based Layout (Legacy) -->
+  <div class="example">
+    <h2>Example 5: Float-based Layout (Legacy)</h2>
+    <div class="explanation">
+      Before Flexbox/Grid, floats were used for multi-column layouts. <b>Not recommended for new projects.</b>
+    </div>
+    <div class="code-block">
+      &lt;div class="float-container clearfix"&gt;
+        &lt;div class="float-left"&gt;Left&lt;/div&gt;
+        &lt;div class="float-right"&gt;Right&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo float-container clearfix" style="min-height:80px;">
+        <div class="float-left">Left</div>
+        <div class="float-right">Right</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 6: Centering Content (Vertically & Horizontally) -->
+  <div class="example">
+    <h2>Example 6: Centering Content (Vertically &amp; Horizontally)</h2>
+    <div class="explanation">
+      Flexbox makes centering content easy both vertically and horizontally.
+    </div>
+    <div class="code-block">
+      &lt;div style="display:flex;justify-content:center;align-items:center;height:120px;"&gt;
+        Centered Content
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo centered">
+        Centered Content
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 7: Responsive Layout with Flexbox -->
+  <div class="example">
+    <h2>Example 7: Responsive Layout with Flexbox</h2>
+    <div class="explanation">
+      Responsive layouts adapt to screen size. Flexbox with <code>flex-wrap</code> and media queries enables this.
+    </div>
+    <div class="code-block">
+      &lt;div class="responsive-layout"&gt;
+        &lt;div&gt;Box 1&lt;/div&gt;
+        &lt;div&gt;Box 2&lt;/div&gt;
+        &lt;div&gt;Box 3&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo responsive-layout">
+        <div>Box 1</div>
+        <div>Box 2</div>
+        <div>Box 3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 8: Nested Layouts (Complex Structure) -->
+  <div class="example">
+    <h2>Example 8: Nested Layouts (Complex Structure)</h2>
+    <div class="explanation">
+      Layouts can be nested for complex designs, such as a sidebar with its own navigation.
+    </div>
+    <div class="code-block">
+      &lt;div class="row"&gt;
+        &lt;aside class="sidebar"&gt;
+          &lt;nav&gt;Sidebar Nav&lt;/nav&gt;
+        &lt;/aside&gt;
+        &lt;main class="main"&gt;
+          &lt;div class="content"&gt;Main Content&lt;/div&gt;
+        &lt;/main&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo row">
+        <aside class="sidebar" style="flex:1;">
+          <nav>Sidebar Nav</nav>
+        </aside>
+        <main class="main" style="flex:2;">
+          <div class="content">Main Content</div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 9: Exception - Table-based Layout (Obsolete) -->
+  <div class="example">
+    <h2>Example 9: Exception - Table-based Layout (Obsolete)</h2>
+    <div class="explanation">
+      <b>Exception:</b> Table-based layouts are obsolete and harm accessibility. Use only for tabular data, not page layout.
+    </div>
+    <div class="code-block">
+      &lt;!-- Bad Practice: --&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;td&gt;Sidebar&lt;/td&gt;&lt;td&gt;Content&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    </div>
+    <div class="output">
+      <table class="layout-demo" style="width:100%;">
+        <tr><td class="sidebar">Sidebar</td><td class="content">Content</td></tr>
+      </table>
+      <div class="exception">
+        <b>Do NOT use tables for layout!</b> Use semantic elements, Flexbox, or Grid instead.
+      </div>
+    </div>
+  </div>
+
+  <!-- Example 10: Layout with Fixed and Fluid Elements -->
+  <div class="example">
+    <h2>Example 10: Layout with Fixed and Fluid Elements</h2>
+    <div class="explanation">
+      Combine fixed-width and flexible elements for advanced layouts.
+    </div>
+    <div class="code-block">
+      &lt;div style="display:flex;"&gt;
+        &lt;div style="width:200px;"&gt;Fixed Sidebar&lt;/div&gt;
+        &lt;div style="flex:1;"&gt;Fluid Content&lt;/div&gt;
+      &lt;/div&gt;
+    </div>
+    <div class="output">
+      <div class="layout-demo" style="display:flex;">
+        <div style="width:200px; background:#6ab04c; color:#fff; padding:1rem; border-radius:4px 0 0 4px;">Fixed Sidebar</div>
+        <div style="flex:1; background:#f6e58d; padding:1rem; border-radius:0 4px 4px 0;">Fluid Content</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

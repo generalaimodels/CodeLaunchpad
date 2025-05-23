@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Div & Classes – 10 Detailed Examples</title>
+  <style>
+    /* =============================================================================
+       Example 1: Basic .box class styling
+       - Demonstrates how a simple <div> can be styled via a CSS class.
+    ================================================================================ */
+    .box {
+      border: 2px solid #007BFF;   /* Blue border */
+      padding: 1rem;               /* Spacing inside */
+      margin: 1rem 0;              /* Spacing outside */
+      background: #E9F7FE;         /* Light-blue background */
+      font-family: Arial, sans-serif;
+    }
+
+    /* =============================================================================
+       Example 2: Multiple classes on one <div>
+       - You can combine multiple classes to compose styles.
+    ================================================================================ */
+    .shadow {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .rounded {
+      border-radius: 8px;
+    }
+
+    /* =============================================================================
+       Example 3: Nested <div> layout
+       - Create a parent and child <div>; parent uses .container, child uses .item.
+    ================================================================================ */
+    .container {
+      border: 2px dashed #28A745;
+      padding: 1rem;
+      display: flex;               /* Flex layout demonstration */
+      gap: 1rem;
+    }
+    .item {
+      flex: 1;
+      background: #E8F5E9;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    /* =============================================================================
+       Example 4: Grid layout with classes
+       - Use CSS Grid, assign .grid-container to parent, .grid-item to children.
+    ================================================================================ */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    .grid-item {
+      background: #FFF3CD;
+      padding: 0.75rem;
+      text-align: center;
+      border: 1px solid #FFE8A1;
+    }
+
+    /* =============================================================================
+       Example 5: Utility classes & specificity
+       - Show how utility classes .text-center and .text-red can be overridden.
+    ================================================================================ */
+    .text-center { text-align: center; }
+    .text-red    { color: #DC3545 !important; }  /* !important increases specificity */
+    /* A more specific selector without !important will lose to .text-red! */
+
+    /* =============================================================================
+       Example 6: BEM naming convention
+       - .card, .card__header, .card__body, .card--highlight modifier.
+    ================================================================================ */
+    .card {
+      border: 1px solid #CED4DA;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .card__header {
+      background: #F8F9FA;
+      padding: 0.5rem;
+      font-weight: bold;
+    }
+    .card__body {
+      padding: 0.5rem;
+    }
+    .card--highlight {
+      border-color: #FFC107;
+    }
+
+    /* =============================================================================
+       Example 7: Responsive utility class
+       - Demonstrate mobile-first approach for .hide-on-mobile
+    ================================================================================ */
+    .hide-on-mobile {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .hide-on-mobile {
+        display: none;  /* Hide when viewport ≤ 600px */
+      }
+    }
+
+    /* =============================================================================
+       Example 8: Dynamic class application (via JS)
+       - .active toggles a highlight style when button clicked.
+    ================================================================================ */
+    .toggle-box {
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 2px solid #6F42C1;
+      transition: background 0.3s;
+    }
+    .toggle-box.active {
+      background: #EDE7F6;
+    }
+
+    /* =============================================================================
+       Example 9: Accessibility with roles and classes
+       - Use role="region" and aria-label for screen-readers.
+    ================================================================================ */
+    .accessible-section {
+      padding: 1rem;
+      border: 1px solid #20C997;
+      background: #E6FFFA;
+    }
+
+    /* =============================================================================
+       Example 10: Exception case – invalid class names
+       - Starting with a number or using spaces is invalid; browsers ignore them.
+       - Correct: .valid-class, Invalid: .123box, .box red (space).
+    ================================================================================ */
+    /* .123box { background: tomato; }    INVALID – class selectors cannot start with digits */
+    /* .box red { color: white; }         INVALID – space splits selectors */
+  </style>
+</head>
+<body>
+
+  <!-- =============================================================================
+       Example 1: Basic DIV with .box
+  ================================================================================== -->
+  <div class="box">
+    This is a simple &lt;div&gt; styled by the <code>.box</code> class.
+  </div>
+
+  <!-- =============================================================================
+       Example 2: Combining .box, .shadow & .rounded
+  ================================================================================== -->
+  <div class="box shadow rounded">
+    <p>Multiple classes compose styles:<br>
+      <code>.box</code>, <code>.shadow</code>, <code>.rounded</code>.</p>
+  </div>
+
+  <!-- =============================================================================
+       Example 3: Nested DIVs using .container & .item
+  ================================================================================== -->
+  <div class="container">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+  </div>
+
+  <!-- =============================================================================
+       Example 4: Grid layout with .grid-container & .grid-item
+  ================================================================================== -->
+  <div class="grid-container">
+    <div class="grid-item">Grid 1</div>
+    <div class="grid-item">Grid 2</div>
+    <div class="grid-item">Grid 3</div>
+    <div class="grid-item">Grid 4</div>
+    <div class="grid-item">Grid 5</div>
+    <div class="grid-item">Grid 6</div>
+  </div>
+
+  <!-- =============================================================================
+       Example 5: Utility classes & specificity
+  ================================================================================== -->
+  <div class="box text-center text-red">
+    This text is centered and forced red by <code>.text-red !important</code>.
+  </div>
+
+  <!-- =============================================================================
+       Example 6: BEM naming convention for cards
+  ================================================================================== -->
+  <div class="card card--highlight">
+    <div class="card__header">Featured Card</div>
+    <div class="card__body">BEM methodology: Block__Element--Modifier.</div>
+  </div>
+
+  <!-- =============================================================================
+       Example 7: Responsive utility .hide-on-mobile
+  ================================================================================== -->
+  <div class="box hide-on-mobile">
+    This box hides on mobile (≤600px width).
+  </div>
+
+  <!-- =============================================================================
+       Example 8: Dynamic class toggling via JS
+  ================================================================================== -->
+  <button id="toggleBtn">Toggle Highlight</button>
+  <div id="toggleBox" class="toggle-box">
+    Click the button to toggle the <code>.active</code> class.
+  </div>
+  <script>
+    // Best practice: Wait for DOMContentLoaded before querying elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('toggleBtn');
+      const box = document.getElementById('toggleBox');
+      btn.addEventListener('click', () => {
+        box.classList.toggle('active');
+      });
+    });
+  </script>
+
+  <!-- =============================================================================
+       Example 9: Accessibility – role & aria-label on a DIV
+  ================================================================================== -->
+  <div role="region" aria-label="Promotional Offer" class="accessible-section">
+    <h2>Special Offer</h2>
+    <p>Screen readers announce this as a distinct region.</p>
+  </div>
+
+  <!-- =============================================================================
+       Example 10: Invalid class names (commented out)
+  ================================================================================== -->
+  <!--
+     Attempting to use invalid class selectors; browsers ignore these:
+     <div class="123box">Won't be styled.</div>
+     <div class="box red">This creates two classes: "box" and "red", not "box red".</div>
+  -->
+
+</body>
+</html>

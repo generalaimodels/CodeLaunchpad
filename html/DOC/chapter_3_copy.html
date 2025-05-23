@@ -1,0 +1,218 @@
+<!--
+  HTML Formatting & Quotations: In-Depth Guide with 10 Examples
+  -------------------------------------------------------------
+  This HTML file is a comprehensive, example-rich resource for mastering HTML Formatting and Quotations.
+  All explanations are provided as comments within the file, covering all aspects, best practices, and exceptions.
+  Each example is crafted to demonstrate a unique use case or important concept.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Formatting & Quotations: Detailed Guide & Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 2rem; background: #f9f9f9; color: #222; }
+    section { margin-bottom: 3rem; padding: 1.5rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    h1, h2 { margin-top: 1.5rem; }
+    code, pre { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+    .example { border-left: 4px solid #007acc; padding-left: 1rem; margin: 1rem 0; background: #f0f8ff; }
+    .note { color: #b00; font-weight: bold; }
+    .output { margin: 0.5em 0 0.5em 1em; padding: 0.5em; background: #f8f8f8; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<!--
+  Section: HTML Formatting Elements
+  ---------------------------------
+  HTML formatting elements are used to display special types of text, such as bold, italic, underlined, marked, small, deleted, inserted, subscript, and superscript.
+  These elements are semantic, meaning they describe the meaning of the text, not just its appearance.
+-->
+<section id="formatting">
+  <h1>HTML Formatting Elements</h1>
+  <p>
+    Formatting elements in HTML provide semantic meaning and visual emphasis to text. Use them to highlight, stress, or annotate content appropriately.
+  </p>
+
+  <!-- Example 1: Bold text with <b> and <strong> -->
+  <div class="example">
+    <pre>
+&lt;b&gt;Bold text&lt;/b&gt; and &lt;strong&gt;Strong importance&lt;/strong&gt;
+    </pre>
+    <div class="output">
+      <b>Bold text</b> and <strong>Strong importance</strong>
+    </div>
+    <!--
+      <b>: Bold for stylistic purposes, no extra importance.
+      <strong>: Bold and indicates strong importance (semantic).
+    -->
+  </div>
+
+  <!-- Example 2: Italic text with <i> and <em> -->
+  <div class="example">
+    <pre>
+&lt;i&gt;Italic text&lt;/i&gt; and &lt;em&gt;Emphasized text&lt;/em&gt;
+    </pre>
+    <div class="output">
+      <i>Italic text</i> and <em>Emphasized text</em>
+    </div>
+    <!--
+      <i>: Italic for alternate voice or mood, no emphasis.
+      <em>: Emphasized text, usually rendered italic (semantic).
+    -->
+  </div>
+
+  <!-- Example 3: Underlined and Marked text -->
+  <div class="example">
+    <pre>
+&lt;u&gt;Underlined text&lt;/u&gt; and &lt;mark&gt;Marked text&lt;/mark&gt;
+    </pre>
+    <div class="output">
+      <u>Underlined text</u> and <mark>Marked text</mark>
+    </div>
+    <!--
+      <u>: Underlined, often for misspelled words or proper names.
+      <mark>: Highlighted/marked text for reference or search results.
+    -->
+  </div>
+
+  <!-- Example 4: Small, Deleted, and Inserted text -->
+  <div class="example">
+    <pre>
+&lt;small&gt;Small text&lt;/small&gt; &lt;del&gt;Deleted&lt;/del&gt; &lt;ins&gt;Inserted&lt;/ins&gt;
+    </pre>
+    <div class="output">
+      <small>Small text</small> <del>Deleted</del> <ins>Inserted</ins>
+    </div>
+    <!--
+      <small>: Smaller text, e.g., legal disclaimers.
+      <del>: Deleted/removed text (strikethrough).
+      <ins>: Inserted/added text (underlined).
+    -->
+  </div>
+
+  <!-- Example 5: Subscript and Superscript -->
+  <div class="example">
+    <pre>
+H&lt;sub&gt;2&lt;/sub&gt;O and E = mc&lt;sup&gt;2&lt;/sup&gt;
+    </pre>
+    <div class="output">
+      H<sub>2</sub>O and E = mc<sup>2</sup>
+    </div>
+    <!--
+      <sub>: Subscript (below baseline), e.g., chemical formulas.
+      <sup>: Superscript (above baseline), e.g., exponents.
+    -->
+  </div>
+</section>
+
+<!--
+  Section: HTML Quotations
+  ------------------------
+  HTML provides several elements for quotations and citing sources:
+    - <blockquote>: For long, block-level quotations.
+    - <q>: For short, inline quotations.
+    - <cite>: For citing a creative work.
+    - <abbr>: For abbreviations.
+    - <address>: For contact information.
+    - <bdo>: For bidirectional text override.
+-->
+<section id="quotations">
+  <h1>HTML Quotations</h1>
+  <p>
+    HTML offers semantic elements for quoting and referencing text, ensuring clarity and accessibility.
+  </p>
+
+  <!-- Example 6: Blockquote with cite attribute -->
+  <div class="example">
+    <pre>
+&lt;blockquote cite="https://www.w3.org/"&gt;
+  The World Wide Web Consortium (W3C) develops standards for the Web.
+&lt;/blockquote&gt;
+    </pre>
+    <div class="output">
+      <blockquote cite="https://www.w3.org/">
+        The World Wide Web Consortium (W3C) develops standards for the Web.
+      </blockquote>
+    </div>
+    <!--
+      <blockquote>: For long quotations. The cite attribute (optional) specifies the source URL.
+    -->
+  </div>
+
+  <!-- Example 7: Inline quotation with <q> -->
+  <div class="example">
+    <pre>
+&lt;p&gt;Tim said, &lt;q&gt;HTML is the foundation of the web.&lt;/q&gt;&lt;/p&gt;
+    </pre>
+    <div class="output">
+      <p>Tim said, <q>HTML is the foundation of the web.</q></p>
+    </div>
+    <!--
+      <q>: For short, inline quotations. Browsers add quotation marks automatically.
+    -->
+  </div>
+
+  <!-- Example 8: Citing a creative work with <cite> -->
+  <div class="example">
+    <pre>
+&lt;p&gt;Read &lt;cite&gt;The Art of Computer Programming&lt;/cite&gt; by Donald Knuth.&lt;/p&gt;
+    </pre>
+    <div class="output">
+      <p>Read <cite>The Art of Computer Programming</cite> by Donald Knuth.</p>
+    </div>
+    <!--
+      <cite>: Used for titles of creative works (books, songs, movies, etc.).
+    -->
+  </div>
+
+  <!-- Example 9: Abbreviation with <abbr> and address with <address> -->
+  <div class="example">
+    <pre>
+&lt;p&gt;The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;
+&lt;address&gt;
+  Contact: Ada Lovelace, ada@example.com
+&lt;/address&gt;
+    </pre>
+    <div class="output">
+      <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+      <address>
+        Contact: Ada Lovelace, ada@example.com
+      </address>
+    </div>
+    <!--
+      <abbr>: For abbreviations/acronyms, with a title attribute for full meaning.
+      <address>: For contact information (author/owner of a document or article).
+    -->
+  </div>
+
+  <!-- Example 10: Bidirectional override with <bdo> and exception for misuse -->
+  <div class="example">
+    <pre>
+&lt;bdo dir="rtl"&gt;This text is right-to-left!&lt;/bdo&gt;
+&lt;!-- Exception: Do not use <q> for block-level quotes, or <blockquote> for inline quotes --&gt;
+    </pre>
+    <div class="output">
+      <bdo dir="rtl">This text is right-to-left!</bdo>
+    </div>
+    <div class="note">
+      Exception: <q> is for inline quotes only; <blockquote> is for block-level quotes only.
+    </div>
+  </div>
+</section>
+
+<!--
+  Section: Best Practices and Exceptions
+  --------------------------------------
+  - Use semantic tags for meaning, not just appearance.
+  - Do not use formatting tags (<b>, <i>, <u>) for layout; use CSS for visual styling.
+  - Always provide the title attribute for <abbr> for accessibility.
+  - Do not nest <q> inside <q> (browsers may not render nested quotes correctly).
+  - <cite> is not for URLs, but for creative work titles.
+  - <address> is for contact info, not for physical addresses in content.
+-->
+
+</body>
+</html>

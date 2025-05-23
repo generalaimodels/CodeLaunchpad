@@ -1,0 +1,34 @@
+- **assert**: simple assertion testing utility.  
+- **buffer**: handling of binary data via the Buffer class.  
+- **child_process**: spawn and manage subprocesses.  
+- **cluster**: enable easy creation of worker processes that share server ports.  
+- **console**: enhanced console logging and timing utilities.  
+- **crypto**: cryptographic functions (hashing, signing, encryption).  
+- **dgram**: UDP datagram sockets.  
+- **dns**: DNS lookup and name resolution.  
+- **domain** _(deprecated)_: simpler error-handling contexts (legacy).  
+- **events**: event-emitter pattern implementation.  
+- **fs**: filesystem I/O (read/write files, watch, etc.).  
+- **http**: HTTP server/client functionality.  
+- **https**: HTTP over TLS/SSL.  
+- **inspector**: interact with V8 inspector/debugger.  
+- **module**: Node’s internal module loader API.  
+- **net**: TCP and IPC socket networking.  
+- **os**: operating-system utility functions (CPU, memory, etc.).  
+- **path**: filesystem path utilities.  
+- **perf_hooks**: performance-timing APIs.  
+- **process**: information and control over the current Node process.  
+- **punycode** _(deprecated)_: Unicode <–> punycode conversion.  
+- **querystring**: URL query-string parsing and formatting.  
+- **readline**: line-by-line input from streams (e.g. stdin).  
+- **repl**: Read–Eval–Print Loop (interactive shell) API.  
+- **stream**: abstract streaming interfaces (Readable, Writable, etc.).  
+- **string_decoder**: decode buffer data into strings without breaking multi-byte chars.  
+- **timers**: scheduling functions (setTimeout, setImmediate, nextTick).  
+- **tls**: TLS and SSL network communication.  
+- **tty**: terminal (tty) utilities and checks.  
+- **url**: URL resolution and parsing.  
+- **util**: various utilities (inherits, promisify, debuglog, etc.).  
+- **v8**: V8 engine API (heap snapshots, statistics).  
+- **vm**: compile and run code in V8 Virtual Machine contexts.  
+- **zlib**: compression/decompression (gzip, deflate).

@@ -1,0 +1,281 @@
+<!--
+    HTML Lists & Block vs Inline Elements: 10 Detailed Examples and Explanations
+    ----------------------------------------------------------------------------
+    This file demonstrates the use of HTML lists (ordered, unordered, description) and the distinction between block and inline elements.
+    Each example is explained in detail, covering syntax, attributes, accessibility, and best practices.
+    All code follows modern standards and is designed for clarity and technical excellence.
+    ----------------------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Lists & Block vs Inline Elements: 10 Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 2rem; background: #f9f9f9; color: #222; }
+        h1 { color: #1565c0; }
+        section { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; margin-bottom: 2rem; padding: 1.5rem; }
+        code, pre { background: #f3f3f3; border-radius: 4px; padding: 2px 6px; }
+        ul, ol, dl { margin: 1rem 0 1rem 2rem; }
+        dt { font-weight: bold; }
+        dd { margin-bottom: 0.5rem; }
+        .block-demo, .inline-demo { border: 1px dashed #1976d2; margin: 0.5rem 0; padding: 0.5rem; }
+        .block-demo { background: #e3f2fd; }
+        .inline-demo { background: #fffde7; }
+        .note { color: #b71c1c; font-weight: bold; }
+        .custom-list { list-style-type: square; color: #1976d2; }
+        .inline-highlight { background: #ffe082; border-radius: 3px; padding: 0 2px; }
+        .block-highlight { background: #b2dfdb; border-radius: 3px; padding: 0 2px; }
+    </style>
+</head>
+<body>
+    <h1>HTML Lists & Block vs Inline Elements: 10 Detailed Examples</h1>
+    <p>
+        This file demonstrates the use of HTML lists and the distinction between block and inline elements, covering syntax, attributes, accessibility, and best practices.
+        Each example is explained in detail for clarity.
+    </p>
+
+    <!-- Example 1: Basic Unordered List -->
+    <section>
+        <h2>1. Basic Unordered List (<code>&lt;ul&gt;</code>)</h2>
+        <p>
+            An unordered list uses <code>&lt;ul&gt;</code> with <code>&lt;li&gt;</code> items.
+        </p>
+        <pre>
+&lt;ul&gt;
+    &lt;li&gt;Apple&lt;/li&gt;
+    &lt;li&gt;Banana&lt;/li&gt;
+    &lt;li&gt;Cherry&lt;/li&gt;
+&lt;/ul&gt;
+        </pre>
+        <ul>
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Cherry</li>
+        </ul>
+        <ul>
+            <li>Default marker is a disc (•).</li>
+            <li>Use for items where order does not matter.</li>
+        </ul>
+    </section>
+
+    <!-- Example 2: Basic Ordered List -->
+    <section>
+        <h2>2. Basic Ordered List (<code>&lt;ol&gt;</code>)</h2>
+        <p>
+            An ordered list uses <code>&lt;ol&gt;</code> with <code>&lt;li&gt;</code> items.
+        </p>
+        <pre>
+&lt;ol&gt;
+    &lt;li&gt;First&lt;/li&gt;
+    &lt;li&gt;Second&lt;/li&gt;
+    &lt;li&gt;Third&lt;/li&gt;
+&lt;/ol&gt;
+        </pre>
+        <ol>
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+        </ol>
+        <ul>
+            <li>Default marker is a number.</li>
+            <li>Use for steps, rankings, or sequences.</li>
+        </ul>
+    </section>
+
+    <!-- Example 3: Nested Lists (ul inside ol, and vice versa) -->
+    <section>
+        <h2>3. Nested Lists</h2>
+        <p>
+            Lists can be nested for hierarchical data.
+        </p>
+        <pre>
+&lt;ol&gt;
+    &lt;li&gt;Fruits
+        &lt;ul&gt;
+            &lt;li&gt;Apple&lt;/li&gt;
+            &lt;li&gt;Banana&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Vegetables&lt;/li&gt;
+&lt;/ol&gt;
+        </pre>
+        <ol>
+            <li>Fruits
+                <ul>
+                    <li>Apple</li>
+                    <li>Banana</li>
+                </ul>
+            </li>
+            <li>Vegetables</li>
+        </ol>
+        <ul>
+            <li>Indentation and marker type change automatically.</li>
+        </ul>
+    </section>
+
+    <!-- Example 4: Custom List Markers (CSS) -->
+    <section>
+        <h2>4. Custom List Markers (CSS)</h2>
+        <p>
+            Use <code>list-style-type</code> in CSS to change marker style.
+        </p>
+        <pre>
+&lt;ul style="list-style-type: square;"&gt;
+    &lt;li&gt;Alpha&lt;/li&gt;
+    &lt;li&gt;Beta&lt;/li&gt;
+&lt;/ul&gt;
+        </pre>
+        <ul class="custom-list">
+            <li>Alpha</li>
+            <li>Beta</li>
+        </ul>
+        <ul>
+            <li>Other values: <code>circle</code>, <code>disc</code>, <code>decimal</code>, <code>lower-roman</code>, etc.</li>
+        </ul>
+    </section>
+
+    <!-- Example 5: Description List (<dl>, <dt>, <dd>) -->
+    <section>
+        <h2>5. Description List (<code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code>)</h2>
+        <p>
+            Description lists are used for name-value pairs, such as terms and definitions.
+        </p>
+        <pre>
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;
+        </pre>
+        <dl>
+            <dt>HTML</dt>
+            <dd>HyperText Markup Language</dd>
+            <dt>CSS</dt>
+            <dd>Cascading Style Sheets</dd>
+        </dl>
+        <ul>
+            <li><code>&lt;dt&gt;</code>: term; <code>&lt;dd&gt;</code>: description.</li>
+        </ul>
+    </section>
+
+    <!-- Example 6: List with Start, Reversed, and Type Attributes -->
+    <section>
+        <h2>6. Ordered List with <code>start</code>, <code>reversed</code>, and <code>type</code> Attributes</h2>
+        <p>
+            Control numbering and marker type with attributes.
+        </p>
+        <pre>
+&lt;ol start="5" reversed type="A"&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ol&gt;
+        </pre>
+        <ol start="5" reversed type="A">
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ol>
+        <ul>
+            <li><code>start</code>: starting value.</li>
+            <li><code>reversed</code>: counts down.</li>
+            <li><code>type</code>: marker style (<code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>, <code>i</code>).</li>
+        </ul>
+    </section>
+
+    <!-- Example 7: List Accessibility (aria-label, role) -->
+    <section>
+        <h2>7. List Accessibility (<code>aria-label</code>, <code>role</code>)</h2>
+        <p>
+            Use ARIA attributes for better accessibility, especially for custom-styled lists.
+        </p>
+        <pre>
+&lt;ul aria-label="Navigation Menu" role="list"&gt;
+    &lt;li&gt;Home&lt;/li&gt;
+    &lt;li&gt;About&lt;/li&gt;
+&lt;/ul&gt;
+        </pre>
+        <ul aria-label="Navigation Menu" role="list">
+            <li>Home</li>
+            <li>About</li>
+        </ul>
+        <ul>
+            <li>Screen readers will announce the list as "Navigation Menu".</li>
+        </ul>
+    </section>
+
+    <!-- Example 8: Block Elements Demo -->
+    <section>
+        <h2>8. Block Elements Demo</h2>
+        <p>
+            Block elements start on a new line and take up the full width available. Examples: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code>.
+        </p>
+        <pre>
+&lt;div class="block-demo"&gt;This is a block element (div)&lt;/div&gt;
+&lt;p class="block-demo"&gt;This is a block element (p)&lt;/p&gt;
+        </pre>
+        <div class="block-demo">This is a block element (<span class="block-highlight">div</span>)</div>
+        <p class="block-demo">This is a block element (<span class="block-highlight">p</span>)</p>
+        <ul>
+            <li>Block elements can contain other block or inline elements.</li>
+        </ul>
+    </section>
+
+    <!-- Example 9: Inline Elements Demo -->
+    <section>
+        <h2>9. Inline Elements Demo</h2>
+        <p>
+            Inline elements do not start on a new line and only take up as much width as necessary. Examples: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;img&gt;</code>.
+        </p>
+        <pre>
+This is &lt;span class="inline-demo"&gt;inline&lt;/span&gt; text.
+        </pre>
+        <p>
+            This is <span class="inline-demo">inline</span> text with an <a href="#" class="inline-demo">inline link</a> and an <img src="https://via.placeholder.com/20" alt="icon" class="inline-demo" style="vertical-align:middle;"> image.
+        </p>
+        <ul>
+            <li>Inline elements can only contain other inline elements or text.</li>
+        </ul>
+    </section>
+
+    <!-- Example 10: Block Inside Inline and Inline Inside Block -->
+    <section>
+        <h2>10. Block Inside Inline and Inline Inside Block</h2>
+        <p>
+            <span class="note">Exception:</span> Block elements <strong>cannot</strong> be placed inside inline elements (invalid HTML). Inline elements <strong>can</strong> be placed inside block elements.
+        </p>
+        <pre>
+&lt;!-- Valid: Inline inside block --&gt;
+&lt;div&gt;This is &lt;span&gt;valid&lt;/span&gt;.&lt;/div&gt;
+
+&lt;!-- Invalid: Block inside inline (do not do this) --&gt;
+&lt;span&gt;
+    &lt;div&gt;Invalid!&lt;/div&gt;
+&lt;/span&gt;
+        </pre>
+        <div>This is <span class="inline-highlight">valid</span> (inline inside block).</div>
+        <!-- The following is commented out because it is invalid HTML:
+        <span>
+            <div>Invalid!</div>
+        </span>
+        -->
+        <ul>
+            <li>Browsers may "fix" invalid HTML, but always follow the standard for predictable results.</li>
+        </ul>
+    </section>
+
+    <!-- Additional Notes and Exceptions -->
+    <section>
+        <h2>Additional Notes &amp; Exceptions</h2>
+        <ul>
+            <li>Use lists for semantic grouping of items, not just for indentation or layout.</li>
+            <li>Block elements: start on new line, can contain block/inline; Inline: flow with text, only contain inline/text.</li>
+            <li>Some elements (e.g., <code>&lt;li&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code>) are only valid inside their parent list containers.</li>
+            <li>For custom list markers, use <code>::marker</code> or <code>list-style-image</code> in CSS.</li>
+            <li>HTML5 introduced <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code> as block elements for better semantics.</li>
+        </ul>
+    </section>
+</body>
+</html>

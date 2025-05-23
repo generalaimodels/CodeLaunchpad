@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: Working with JSON 🗂️</title>
+</head>
+<body>
+    <h1>Chapter 13: Mastering JSON Data 🚀</h1>
+
+    <div id="json-data-container">
+        <!-- JSON data will be rendered here -->
+    </div>
+
+    <script>
+        // 🗂️ Chapter 13: Working with JSON (JavaScript Object Notation) 🗂️
+
+        // 📦 1. What is JSON? 📦
+        //    - JSON (JavaScript Object Notation): Lightweight data-interchange format. 📝
+        //    - Human-readable and machine-parsable. 🧑‍💻 🤖
+        //    - Based on a subset of JavaScript syntax (but language-independent). 🌐
+        //    - Used for data transmission in web applications (client <-> server). 📡
+
+        // 🔑 Key Features of JSON:
+        //    - Text-based: Represented as strings. 🔤
+        //    - Key-Value Pairs: Data is structured in attributes (keys) and their corresponding values. 🗝️ <-> 🧰
+        //    - Language Independent: Can be used with any programming language. 🗣️🌎
+        //    - Widely used for APIs and configuration files. 🔌 ⚙️
+
+        // 🧱 JSON Data Types:
+        //    - String:  Text enclosed in double quotes.  "hello" 💬
+        //    - Number:  Integers or floating-point numbers. 10, 3.14 🔢
+        //    - Boolean: `true` or `false`. ✅ ❌
+        //    - Null:    `null`.  ∅
+        //    - Object:  Unordered collection of key-value pairs, enclosed in curly braces `{}`. 📦
+        //               e.g., {"name": "Raju", "age": 30}
+        //    - Array:   Ordered list of values, enclosed in square brackets `[]`. List 📝
+        //               e.g., [1, 2, 3], ["apple", "banana"]
+
+        // 📝 Example JSON Data Structure:
+
+        const exampleJsonData = `{
+          "name": "John Doe",           // 🔑 String Key: "name", String Value: "John Doe" 💬
+          "age": 30,                  // 🔑 String Key: "age", Number Value: 30 🔢
+          "city": "New York",          // 🔑 String Key: "city", String Value: "New York" 🏙️
+          "isStudent": false,          // 🔑 String Key: "isStudent", Boolean Value: false ❌
+          "hobbies": ["reading", "coding", "hiking"], // 🔑 String Key: "hobbies", Array of Strings 📚 💻 ⛰️
+          "address": {                // 🔑 String Key: "address", Object Value: 📦 (Nested Object)
+              "street": "123 Main St",   // 🔑 String Key: "street", String Value: "123 Main St" 🏘️
+              "zip": "10001"          // 🔑 String Key: "zip", String Value: "10001" 🔢
+          },
+          "skills": null               // 🔑 String Key: "skills", Null Value: null ∅ (No skills listed)
+        }`;
+
+        console.log("Example JSON Data:");
+        console.log(exampleJsonData);
+
+        // ⚠️ Key Differences: JSON vs Javascript Objects ⚠️
+
+        // | Feature         | Javascript Object                  | JSON                                  |
+        // |-----------------|------------------------------------|---------------------------------------|
+        // | Keys            | Strings, Numbers, Symbols         | Strings (in double quotes) ONLY       |
+        // | Values          | Any JS data type (inc. functions) | JSON data types (no functions)        |
+        // | Syntax          | Object literals, constructors     | Object literals ONLY                  |
+        // | Functions       | Can contain functions              | Cannot contain functions             |
+
+        // 🧩 2. Parsing JSON Data (`JSON.parse()`) 🧩
+        //    - Parsing: Converting a JSON string into a JavaScript object or array. ➡️ 📦
+        //    - `JSON.parse(jsonString)`: Takes a JSON string as input and returns a JS object. ⚙️
+
+        // Example 1: Basic JSON Parsing
+        const basicJsonString = `{ "name": "Alice", "age": 28, "city": "Paris" }`; // Simple JSON string
+        const parsedJsonObject1 = JSON.parse(basicJsonString); // Parsing JSON string to JS object
+        console.log("\nParsed JSON Object 1 (Basic):", parsedJsonObject1);
+        console.log("Name:", parsedJsonObject1.name); // Accessing object properties using dot notation.
+        console.log("Age:", parsedJsonObject1.age);   // Accessing object properties using dot notation.
+
+        // Example 2: Parsing JSON with Array and Nested Object
+        const complexJsonString = `{
+            "product": "Laptop",
+            "price": 1200,
+            "colors": ["Silver", "Black"],
+            "details": {
+                "brand": "TechCorp",
+                "storage": "1TB SSD"
+            }
+        }`; // Complex JSON string with array and nested object
+        const parsedJsonObject2 = JSON.parse(complexJsonString); // Parsing complex JSON
+        console.log("\nParsed JSON Object 2 (Complex):", parsedJsonObject2);
+        console.log("Product:", parsedJsonObject2.product);
+        console.log("First Color:", parsedJsonObject2.colors[0]); // Accessing array element
+        console.log("Brand Detail:", parsedJsonObject2.details.brand); // Accessing nested object property
+
+        // ⚠️ Error Handling in JSON.parse() ⚠️
+        //    - If `jsonString` is NOT valid JSON, `JSON.parse()` will throw a SyntaxError. 💥
+
+        // Example of Invalid JSON Parsing (will cause error - try...catch block used)
+        const invalidJsonString = '{name: "Bob", age: 35}'; // Invalid JSON (keys not in double quotes)
+        try {
+            JSON.parse(invalidJsonString); // Attempt to parse invalid JSON
+        } catch (error) {
+            console.error("\nError parsing invalid JSON:", error); // Catch and log the error
+        }
+
+        // 🧵 3. Stringifying JavaScript Objects (`JSON.stringify()`) 🧵
+        //    - Stringifying: Converting a JavaScript object into a JSON string. 📦 ➡️ 📝
+        //    - `JSON.stringify(jsObject)`: Takes a JS object as input and returns a JSON string. ⚙️
+
+        // Example 1: Basic Stringification
+        const basicJsObject = { name: "Charlie", city: "Tokyo", occupation: "Engineer" }; // Simple JS object
+        const jsonString1 = JSON.stringify(basicJsObject); // Stringifying JS object to JSON string
+        console.log("\nStringified JSON 1 (Basic):", jsonString1);
+        console.log("Type of JSON String 1:", typeof jsonString1); // Verify it's a string
+
+        // Example 2: Stringifying with Array and Nested Object
+        const complexJsObject = {
+            bookTitle: "JavaScript Mastery",
+            author: "Expert Coder",
+            chapters: ["Intro", "Basics", "Advanced"],
+            publisher: {
+                name: "CodeBooks Inc.",
+                year: 2023
+            }
+        }; // Complex JS object with array and nested object
+        const jsonString2 = JSON.stringify(complexJsObject); // Stringifying complex JS object
+        console.log("\nStringified JSON 2 (Complex):", jsonString2);
+        console.log("Type of JSON String 2:", typeof jsonString2); // Verify it's a string
+
+        // Formatting JSON Output (optional arguments in JSON.stringify()):
+        //    - `replacer`: Function or array to filter/modify stringification (advanced). ⚙️
+        //    - `space`: Number of spaces or string for indentation (for pretty printing).  🎨
+
+        // Example of Pretty Printing JSON with indentation
+        const prettyJsonString = JSON.stringify(complexJsObject, null, 4); // Indentation of 4 spaces
+        console.log("\nPretty Printed JSON (4 spaces indent):\n", prettyJsonString);
+        // `null` as replacer means no filtering/modification.
+
+        // 🌐 4. Fetching JSON Data using API Call 🌐
+        //    - APIs often return data in JSON format. 📡 -> 🗂️
+        //    - `fetch()` function is used to make HTTP requests and retrieve data. 🌐
+
+        async function fetchJsonFromApiExample() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/todos/1'); // Make API request
+                if (!response.ok) { // Check if response status is OK (200-299)
+                    throw new Error(`HTTP error! status: ${response.status}`); // Throw error if not OK
+                }
+                const jsonData = await response.json(); // Parse response body as JSON (returns a Promise) ➡️ 📦
+                console.log("\nJSON Data fetched from API:", jsonData); // Log the fetched JSON data
+                return jsonData; // Return the fetched JSON data
+            } catch (error) {
+                console.error("Error fetching JSON data from API:", error); // Log any fetch errors
+                return null; // Return null in case of error
+            }
+        }
+
+        // Example of calling the fetch API function
+        fetchJsonFromApiExample().then(dataFromApi => {
+            if (dataFromApi) {
+                console.log("Fetched data processing:", dataFromApi.title); // Process the fetched data
+            } else {
+                console.log("No data fetched from API to process."); // Handle case when no data is fetched
+            }
+        });
+
+        // 🖼️ 5. Example: JSON Data Fetching and Rendering on Webpage 🖼️
+        //    - Fetch JSON data from API. 🌐
+        //    - Parse JSON data to JS object. ➡️ 📦
+        //    - Render data dynamically in HTML.  ✍️ -> 🌐
+
+        async function fetchDataAndRenderJson() {
+            const container = document.getElementById('json-data-container'); // Get container element
+            container.innerHTML = '<p>Loading JSON data from API...</p>'; // Initial loading message
+
+            try {
+                const jsonData = await fetchJsonFromApiExample(); // Fetch JSON data from API
+                if (jsonData) {
+                    // Render JSON data in the container element
+                    container.innerHTML = `
+                        <h2>${jsonData.title}</h2>
+                        <p>User ID: ${jsonData.userId}</p>
+                        <p>Completed: ${jsonData.completed ? 'Yes ✅' : 'No ❌'}</p>
+                        <p>ID: ${jsonData.id}</p>
+                    `; // Dynamically create HTML content using fetched data
+                } else {
+                    container.innerHTML = '<p>Failed to load JSON data.</p>'; // Error message if fetch fails
+                }
+            } catch (error) {
+                container.innerHTML = `<p>Error rendering data: ${error.message}</p>`; // Display error message in container
+                console.error("Rendering Error:", error); // Log error to console
+            }
+        }
+
+        // Call the function to fetch and render JSON data when page loads.
+        fetchDataAndRenderJson();
+
+        // 🎉 Chapter 13 Completed! You are now a JSON Master! 🚀
+        console.log("\nChapter 13: Working with JSON - Completed! 🗂️ You can now handle JSON data like a pro! ✨");
+
+    </script>
+</body>
+</html>

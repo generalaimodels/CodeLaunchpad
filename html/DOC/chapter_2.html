@@ -1,0 +1,338 @@
+<!--  
+  File  : html-styles-masterclass.html
+  Author: The ∞-IQ Mentor (a.k.a “Best-Coder”)
+  Scope : SINGLE-FILE exhaustive tutorial on  “HTML Styles”.
+          ‑ Covers every core aspect + edge/exception cases.
+          ‑ 5 fully self-contained demo sections (each can be copy-pasted and run alone).
+          ‑ Pedagogical comments are embedded directly in the markup for zero external dependencies.
+          ‑ Code style follows modern standards (HTML5 + CSS3, 2-space indent, semantic structure).  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ SECTION 0:  Document <head> essentials                                  │
+    └──────────────────────────────────────────────────────────────────────────┘
+    – Explanation of styling injection points:
+        1. ✱  Inline style attribute                 (elem-level)
+        2. ✱  Internal <style> sheet                 (page-level)
+        3. ✱  External *.css file via <link>         (site-level)
+    – Style-cascading precedence (highest→lowest):
+        ① Inline ② !important ③ Internal ④ External ⑤ Browser default
+    – NOTE: This internal sheet (#2) will be used to globally beautify the tutorial only;
+            each demo further down shows its own scoped styling technique.  
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Styles – Deep-Dive</title>
+
+  <style>
+    /* Generic tutorial cosmetics (not part of the concept demos) */
+    :root {
+      --ink: #222;
+      --note: #c62828;
+      --card: #ffffff;
+      --bg: #f5f7fa;
+      --brand: #007acc;
+      --mono: Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 2rem;
+      font: 16px/1.6 "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    h1, h2 { color: var(--brand); margin-top: 3rem; }
+    pre, code {
+      font-family: var(--mono);
+      background: #eef3ff;
+      padding: .2rem .4rem;
+      border-radius: 4px;
+    }
+    section {
+      background: var(--card);
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px #0002;
+      margin-bottom: 3rem;
+    }
+    .note { color: var(--note); font-weight: 600; }
+  </style>
+
+  <!--
+    Exception Spotlight #1  ────────────────────────────────────────────────
+    <!– Illegal location for <style> –>
+    Placing <style> outside <head> or <body> is invalid and will be ignored.
+    Example (DON’T DO):
+        <html>
+          <style> body {color:red} </style>  ← illegal (should reside in <head>)
+        </html>
+  -->
+</head>
+
+<body>
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ DEMO #1 – INLINE STYLES                                                 │
+    └──────────────────────────────────────────────────────────────────────────┘
+    • Applied via the “style” attribute on the element itself.
+    • Use for one-off tweaks; avoid for large-scale styling (maintenance hell).
+  -->
+  <section id="demo-inline">
+    <h1>Demo #1 — Inline Styles</h1>
+
+    <!-- Example 1A: Setting text color + background -->
+    <p style="color: #ffffff; background: #4caf50; padding: .5rem;">
+      Inline styles override everything except another inline !important.
+    </p>
+
+    <!-- Example 1B: Multiple properties must be separated by semicolons -->
+    <p style="font-size: 1.25rem; border: 2px dashed #4caf50; margin-top: 1rem;">
+      Each CSS declaration ends with a <code>;</code> even for the last one (safe habit).
+    </p>
+
+    <!-- Example 1C: Dynamic inline width -->
+    <div style="width: 60%; background:#ffc107; text-align:center; padding:.7rem; border-radius:6px;">
+      60&nbsp;% width inline-styled <span class="note">⚠︎ Avoid hard-coding widths on mobile</span>
+    </div>
+
+    <!-- Example 1D: Using CSS variables inline (supported) -->
+    <div style="--c: #00bcd4; border:4px solid var(--c); color:var(--c); padding:.5rem; margin-top:1rem;">
+      Inline custom property <code>--c</code> demo.
+    </div>
+
+    <!-- Example 1E: Exception – property typo -->
+    <p style="background:red;">
+      Property typo → <span class="note">bckground</span> is ignored, element keeps default bg.
+    </p>
+  </section>
+
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ DEMO #2 – INTERNAL STYLE SHEET                                          │
+    └──────────────────────────────────────────────────────────────────────────┘
+    • Declared once inside <head><style> … </style>.
+    • Ideal for single-page prototypes or documents that must be self-contained.
+    • Below we’ll create a second <style> block scoped via attribute “media”.
+  -->
+  <section id="demo-internal">
+    <h1>Demo #2 — Internal Styles</h1>
+
+    <!-- Additional, demo-specific internal sheet inserted right here -->
+    <style>
+      /* Style only children of #demo-internal to prevent clashes */
+      #demo-internal .box {
+        display: inline-block;
+        width: 140px; height: 80px;
+        margin: .4rem;
+        color: #fff; font-weight: 600;
+        line-height: 80px; text-align: center;
+        border-radius: 6px;
+      }
+      /* Color utilities */
+      .c1 { background:#e91e63; }  /* pink   */
+      .c2 { background:#9c27b0; }  /* purple */
+      .c3 { background:#3f51b5; }  /* indigo */
+      /* Media-query edge case: invert colors on print */
+      @media print {
+        #demo-internal .box { filter: invert(1); }
+      }
+    </style>
+
+    <div class="box c1">Box 1</div>
+    <div class="box c2">Box 2</div>
+    <div class="box c3">Box 3</div>
+
+    <p>
+      Resize / print preview to witness the <code>@media print</code> rule inversion.
+    </p>
+
+    <!-- Exception: Style Tag Placement -->
+    <!-- Moving the <style> tag below <body> end will work in modern browsers
+         BUT violates specifications and hurts performance (F.O.U.C.). -->
+  </section>
+
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ DEMO #3 – EXTERNAL STYLE SHEET                                          │
+    └──────────────────────────────────────────────────────────────────────────┘
+    • Best practice for production – one or more *.css files.
+    • Promotes re-use, caching, separation of concerns.
+    • In this single-file tutorial we simulate the link (cannot add actual file).
+  -->
+  <section id="demo-external">
+    <h1>Demo #3 — External Styles (simulated)</h1>
+
+    <!-- THEORETICAL link: <link rel="stylesheet" href="site.css">           -->
+    <!-- Quick proof-of-concept: dynamically create and append stylesheet –> -->
+    <script>
+      /* Inject external rules for showcase: */
+      const css=`#demo-external table{
+                  border-collapse:collapse;width:100%;
+                }
+                #demo-external th,#demo-external td{
+                  border:1px solid #bbb;padding:.6rem;text-align:center;
+                }
+                #demo-external thead{background:#009688;color:#fff;}
+                #demo-external tbody tr:nth-child(even){background:#e0f2f1;}`;
+      const s=document.createElement('style'); s.textContent = css;
+      document.head.appendChild(s);
+    </script>
+
+    <table>
+      <thead><tr><th>Color</th><th>HEX</th><th>RGB</th></tr></thead>
+      <tbody>
+        <tr><td>Teal</td><td>#009688</td><td>rgb(0,150,136)</td></tr>
+        <tr><td>Lime</td><td>#cddc39</td><td>rgb(205,220,57)</td></tr>
+        <tr><td>Deep Orange</td><td>#ff5722</td><td>rgb(255,87,34)</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      These rules were loaded as if from an external sheet—check DevTools ➜ Elements ➜ &lt;style&gt; (injected).
+    </p>
+  </section>
+
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ DEMO #4 – CASCADE & SPECIFICITY                                         │
+    └──────────────────────────────────────────────────────────────────────────┘
+    • Showcases rule conflicts and resolution hierarchy.
+  -->
+  <section id="demo-cascade">
+    <h1>Demo #4 — Cascade + Specificity</h1>
+
+    <!-- Global internal rule (low specificity) -->
+    <style>
+      #demo-cascade p {
+        color: #555;             /* default gray  */
+        background: #fafafa;
+        padding: .5rem;
+      }
+    </style>
+
+    <!-- Paragraph with class (higher specificity) -->
+    <p class="highlight">
+      Class rule will override the generic ID descendant rule (<code>#demo-cascade p</code>).
+    </p>
+
+    <p>
+      Unstyled paragraph uses gray from internal sheet.
+    </p>
+
+    <!-- Class rule (medium specificity) -->
+    <style>
+      #demo-cascade .highlight { color: #ff5722; }
+    </style>
+
+    <!-- Inline style (highest) -->
+    <p style="color:#4caf50;">
+      Inline beats both class and ID rules unless <code>!important</code> is involved.
+    </p>
+
+    <!-- !important beats everything except another !important with higher specificity -->
+    <style>
+      #demo-cascade .override { color: hotpink !important; }
+      /* Same property declared again but without !important – ignored */
+      #demo-cascade .override { color: royalblue; }
+    </style>
+    <p class="override">
+      Hotpink courtesy of <code>!important</code>.
+    </p>
+
+    <!-- Exception: equal specificity, later wins -->
+    <style>
+      /* Later declaration overrides identical selector */
+      #demo-cascade p.latest { color: #009688; }
+    </style>
+    <p class="latest">Teal because rule defined later in source order.</p>
+  </section>
+
+  <!--
+    ┌──────────────────────────────────────────────────────────────────────────┐
+    │ DEMO #5 – COMMON STYLING PROPERTIES                                     │
+    └──────────────────────────────────────────────────────────────────────────┘
+    • Quick tour of frequently used CSS attributes: color, typography, box-model…
+  -->
+  <section id="demo-properties">
+    <h1>Demo #5 — Popular Style Properties</h1>
+
+    <style>
+      /* Scoped utilities */
+      #demo-properties .card {
+        width: 220px;
+        padding: 1rem;
+        margin: .6rem;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: inline-block;
+        transition: transform .25s;
+      }
+      #demo-properties .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 6px 16px #0002;
+      }
+      #demo-properties .card h3 { margin-top: 0; font-size: 1.1rem; }
+      #demo-properties .card p  { margin:.4rem 0 0; font-size: .9rem; }
+    </style>
+
+    <div class="card">
+      <h3>Typography</h3>
+      <p style="font-family:'Courier New', monospace; color:#e91e63;">
+        Monospace pink text
+      </p>
+      <p style="font-weight:700; letter-spacing:.8px;">
+        Bold &amp; spaced letters
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Box-Model</h3>
+      <p style="border:3px dotted #2196f3; padding:6px; margin:6px 0;">
+        Dotted border
+      </p>
+      <p style="padding:8px 12px; background:#ffeb3b;">
+        Internal (padding) highlight
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Colors API</h3>
+      <p style="background:hsl(340deg 82% 52%); color:white;">
+        HSL hot-pink bg
+      </p>
+      <p style="background:rgb(76,175,80); color:#fff;">
+        RGB green bg
+      </p>
+      <p style="background:#2196f3; color:#fff;">
+        HEX blue bg
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Transforms &amp; Transitions</h3>
+      <p style="transform:rotate(-4deg); display:inline-block;">
+        Tilted
+      </p>
+      <p style="transition:color .3s;" onmouseover="this.style.color='#ff5722';" onmouseout="this.style.color='#000';">
+        Hover to color-shift
+      </p>
+    </div>
+
+    <!-- Exception – invalid value -->
+    <p class="note" style="margin-top:1.2rem;">
+      Setting <code>width: -50px;</code> is invalid. Browser auto-drops rule (check DevTools ➜ computed).
+    </p>
+  </section>
+
+  <!--
+    END-OF-FILE  ─────────────────────────────────────────────────────────────
+    • You now own a crystal-clear mental model of HTML Styles.
+    • Fork, tweak, break, and rebuild—because mastery is forged in iteration.
+  -->
+</body>
+</html>
