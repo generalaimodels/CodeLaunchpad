@@ -43,7 +43,7 @@ void printUserInfo(const UserInfo& info = {}) {
 int PrintUserInfo_Main() {
     printUserInfo();  // Uses all default values
     printUserInfo({"Alice", 30, "USA"});  // Specifies all values
-    printUserInfo({.name = "Bob", .country = "Canada"});  // Specifies some values, uses default for age
+    // printUserInfo({.name = "Bob", .country = "Canada"});  // Specifies some values, uses default for age
     return 0;
 }
 
