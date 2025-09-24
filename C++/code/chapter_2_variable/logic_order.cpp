@@ -1,5 +1,34 @@
 #include <iostream>
 
+// Postfix: x++, x--, (), [], . , ->
+
+// Prefix / Unary: ++x, --x, +, -, !, ~, *, &, sizeof, new, delete
+
+// Multiplicative: *, /, %
+
+// Additive: +, -
+
+// Shift: <<, >>
+
+// Relational: <, <=, >, >=
+
+// Equality: ==, !=
+
+// Bitwise AND: &
+
+// Bitwise XOR: ^
+
+// Bitwise OR: |
+
+// Logical AND: &&
+
+// Logical OR: ||
+
+// Conditional (ternary): ?:
+
+// Assignment: =, +=, -=, *=, /=, etc.
+
+// Comma: ,
 int main() {
     // Define some sample variables
     int a = 5;

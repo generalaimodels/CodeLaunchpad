@@ -27,7 +27,7 @@ print(my_vehicle.type)   # Output: Car
 print(my_vehicle.brand)  # Output: Toyota
 print(my_vehicle.color)  # Output: Red
 
-# Example 5: Defining a class with an initializer (constructor)
+# Example 5: Defining a class with an initializer (constructor) 
 class Vehicle:
     def __init__(self, vehicle_type, brand, color):
         self.type = vehicle_type  # Instance attribute

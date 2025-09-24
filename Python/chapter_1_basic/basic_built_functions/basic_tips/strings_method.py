@@ -23,7 +23,7 @@ Time Complexity: O(n) where n is the length of the string
 """
 
 # Basic usage
-text = "hello world"
+text: str = "hello world"
 print(f"'hello world'.capitalize() → '{text.capitalize()}'")  # 'Hello world'
 
 # If the first character is already uppercase, it remains unchanged
@@ -177,9 +177,9 @@ Time Complexity: O(n) where n is the length of the string
 """
 
 # Basic usage
-text = "Hello, World!"
+text: str = "Hello, World!"
 print(f"'Hello, World!'.encode() → {text.encode()}")  # b'Hello, World!'
-
+ 
 # Different encodings
 print(f"UTF-8 encoding: {text.encode('utf-8')}")
 print(f"ASCII encoding: {text.encode('ascii')}")

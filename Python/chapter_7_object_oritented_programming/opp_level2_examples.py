@@ -494,3 +494,5 @@ class LoggedConnection(LoggerMixin, Connection):
 conn = LoggedConnection()
 conn.connect()           # Outputs: Connecting...
 conn.log("Connection established")  # Outputs: [LOG]: Connection established
+
+# 

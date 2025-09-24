@@ -482,6 +482,7 @@ json_data = json.dumps(data)
 # Deserialize from JSON
 parsed_data = json.loads(json_data)
 
+
 # Note: NaN and Infinity are not supported by standard JSON
 try:
     json.dumps({"value": float('inf')})  # Raises ValueError

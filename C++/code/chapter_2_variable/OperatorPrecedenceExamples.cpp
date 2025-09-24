@@ -178,7 +178,10 @@ public:
     static void example22() {
         struct S {
             int value;
-        } s {42};
+        } 
+        
+        
+        s {42};
         int S::* ptr = &S::value;
         std::cout << "Example 22: s.*ptr = " << s.*ptr << "\n";
     }
