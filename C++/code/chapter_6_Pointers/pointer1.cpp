@@ -23,10 +23,7 @@ int main() {
     int* ptr;       // Declare a pointer variable 'ptr' that can store the address of an integer.
                     // Note the '*' symbol, which signifies that 'ptr' is a pointer.
 
-    std::cout << "\nExample 1: Declaration and Basic Variables\n";
-    std::cout << "Integer variable 'number': " << number << "\n";
-    std::cout << "Pointer variable 'ptr' (uninitialized): " << ptr << " (likely garbage value or 0)\n"; // Uninitialized pointers contain garbage values.
-
+ 
     // Common mistake: Using an uninitialized pointer is undefined behavior and can lead to crashes.
     //                 It's crucial to initialize pointers before using them.
 

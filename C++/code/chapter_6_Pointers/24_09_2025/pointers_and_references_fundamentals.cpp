@@ -28,7 +28,7 @@
 */
 
 #include <iostream>
-#include <iomanip>
+#include <iomanip> // for std::hex, std::dec
 #include <cstddef>
 #include <cstdint>
 #include <array>

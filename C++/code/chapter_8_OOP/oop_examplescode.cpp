@@ -311,7 +311,7 @@ public:
 void example7() {
     // Shape shape; // ❌ Error: Cannot instantiate abstract class
 
-    Shape* shape = new Circle(5.0);
+    Shape* shape = 
     cout << "Area of the circle: " << shape->area() << endl;
 
     delete shape;
